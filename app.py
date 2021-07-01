@@ -11,6 +11,11 @@ app = Flask(__name__)
 def root():
     return render_template("layouts/base.html")
 
+@app.route('/diys')
+def diys():
+    return render_template("diys.html")
+
+
 # Listener
 
 if __name__ == "__main__":
