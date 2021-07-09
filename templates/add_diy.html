@@ -1,0 +1,22 @@
+{% extends "layouts/base.html" %}
+
+{% block body %}
+    <div class="container-lg">
+        <h1 class="display-6">Add a DIY</h1>
+        <form action="{{ url_for('add_diys') }}" method="POST">
+            <div class="mb-3">
+                <label for="diy_name" class="form-label">DIY name</label>
+                <input type="text" class="form-control" id="diy_name" name="diy_name" required>
+            </div>
+            <div class="mb-3">
+                <label for="diy_user" class="form-label">Choose a User:</label>
+                    <select class="form-control" id="diy_user" name="diy_user">
+                        <option value="lindsay">Lindsay</option>
+                        <option value="lyrics">Lyrics</option>
+                    </select>
+            </div>
+        <button type="submit" class="btn btn-primary">Add DIY</button>
+        </form>
+    </div>
+
+{% endblock %}

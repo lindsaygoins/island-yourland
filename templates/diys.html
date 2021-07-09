@@ -1,4 +1,25 @@
 {% extends "layouts/base.html" %}
 
 {% block body %}
+
+    <form action="{{ url_for('add_diys') }}" method="GET">
+        <div class="row">
+            <div class="col-2">
+                <button type="submit" class="btn btn-primary">Add DIY</button>
+            </div>
+        </div>
+    </form>
+
+    <form action="{{ url_for('diys') }}" method="POST">
+        <label for="filter_diys_name" class="form-label">Filter DIYs by name</label>
+            <div class="row">
+                <div class="col-4">
+                    <input type="text" class="form-control" id="filter_diys_name" name="filter_diys_name" placeholder="DIY">
+                </div>
+                <div class="col-2">
+                    <button type="submit" class="btn btn-primary">Filter</button>
+                </div>
+            </div>
+    </form>
+
 {% endblock %}
