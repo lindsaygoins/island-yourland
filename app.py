@@ -17,9 +17,17 @@ def about():
 def diys():
     return render_template("diys.html")
 
+@app.route('/add_diys')
+def add_diys():
+    return render_template("add_diy.html")
+
 @app.route('/art')
 def art():
     return render_template("art.html")
+
+@app.route('/add_art')
+def add_art():
+    return render_template("add_art.html")
 
 @app.route('/bugs')
 def bugs():
@@ -32,6 +40,14 @@ def fish():
 @app.route('/seacreatures')
 def seacreatures():
     return render_template("seacreatures.html")
+
+@app.route('/flowers')
+def flowers():
+    return render_template("flowers.html")
+
+@app.route('/items')
+def items():
+    return render_template("items.html")
 
 
 if __name__ == "__main__":
