@@ -1,4 +1,11 @@
 {% extends "layouts/base.html" %}
 
 {% block body %}
+    <form action="{{ url_for('add_flowers') }}" method="GET">
+        <div class="row">
+            <div class="col-2">
+                <button type="submit" class="btn btn-primary">Add Flowers</button>
+            </div>
+        </div>
+    </form>
 {% endblock %}
