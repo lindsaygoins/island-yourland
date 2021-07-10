@@ -1,17 +1,24 @@
 {% extends "layouts/base.html" %}
 
 {% block body %}
+    <form action="{{ url_for('add_items') }}" method="GET">
+        <div class="row">
+            <div class="col-2">
+                <button type="submit" class="btn btn-primary">Add Items</button>
+            </div>
+        </div>
+    </form>
 
-<form action="{{ url_for('items') }}" method="POST">
-    <label for="filter_items_name" class="form-label">Filter items by name</label>
-    <div class="row">
-      <div class="col-4">
-        <input type="text" class="form-control" id="filter_items_name" name="filter_items_name" placeholder="Item">
-      </div>
-      <div class="col-2">
-        <button type="submit" class="btn btn-primary">Filter</button>
-      </div>
-    </div>
-  </form>
+    <form action="{{ url_for('items') }}" method="POST">
+        <label for="filter_items_name" class="form-label">Filter items by name</label>
+        <div class="row">
+            <div class="col-4">
+                <input type="text" class="form-control" id="filter_items_name" name="filter_items_name" placeholder="Item">
+            </div>
+            <div class="col-2">
+                <button type="submit" class="btn btn-primary">Filter</button>
+            </div>
+        </div>
+    </form>
 
 {% endblock %}

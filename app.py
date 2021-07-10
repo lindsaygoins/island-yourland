@@ -49,6 +49,10 @@ def flowers():
 def items():
     return render_template("items.html")
 
+@app.route('/add_items', methods=['GET', 'POST'])
+def add_items():
+    return render_template("add_items.html")
+
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 9112))     

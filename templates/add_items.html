@@ -1,0 +1,22 @@
+{% extends "layouts/base.html" %}
+
+{% block body %}
+    <div class="container-lg">
+        <h1 class="display-6">Add an item</h1>
+        <form action="{{ url_for('add_items') }}" method="POST">
+            <div class="mb-3">
+                <label for="item_name" class="form-label">Item name</label>
+                <input type="text" class="form-control" id="item_name" name="item_name" required>
+            </div>
+            <div class="mb-3">
+                <label for="item_user" class="form-label">Choose a User:</label>
+                    <select class="form-control" id="item_user" name="item_user">
+                        <option value="lindsay">Lindsay</option>
+                        <option value="lyrics">Lyrics</option>
+                    </select>
+            </div>
+        <button type="submit" class="btn btn-primary">Add item</button>
+        </form>
+    </div>
+
+{% endblock %}
