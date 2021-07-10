@@ -41,6 +41,10 @@ def add_bugs():
 def fish():
     return render_template("fish.html")
 
+@app.route('/add_fish')
+def add_fish():
+    return render_template("add_fish.html")
+
 @app.route('/seacreatures')
 def seacreatures():
     return render_template("seacreatures.html")

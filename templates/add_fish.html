@@ -1,0 +1,16 @@
+{% extends "layouts/base.html" %}
+
+{% block body %}
+    <div class="container-lg">
+        <h1 class="display-6">Add Fish</h1>
+        <form action="{{ url_for('add_fish') }}" method="POST">
+            <div class="mb-3">
+                <label for="fish_name" class="form-label">Fish name</label>
+                <input type="text" class="form-control" id="fish_name" name="fish_name" required>
+            </div>
+            <input type="hidden" id="fish_user" name="fish_user" value="lindsay">
+        <button type="submit" class="btn btn-primary">Add Fish</button>
+        </form>
+    </div>
+
+{% endblock %}
