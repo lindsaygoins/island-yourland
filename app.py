@@ -17,7 +17,7 @@ def about():
 def diys():
     return render_template("diys.html")
 
-@app.route('/add_diys')
+@app.route('/add_diys', methods=['GET', 'POST'])
 def add_diys():
     return render_template("add_diy.html")
 
@@ -25,7 +25,7 @@ def add_diys():
 def art():
     return render_template("art.html")
 
-@app.route('/add_art')
+@app.route('/add_art', methods=['GET', 'POST'])
 def add_art():
     return render_template("add_art.html")
 
@@ -33,7 +33,7 @@ def add_art():
 def bugs():
     return render_template("bugs.html")
 
-@app.route('/add_bugs')
+@app.route('/add_bugs', methods=['GET', 'POST'])
 def add_bugs():
     return render_template("add_bugs.html")
 
@@ -41,7 +41,7 @@ def add_bugs():
 def fish():
     return render_template("fish.html")
 
-@app.route('/add_fish')
+@app.route('/add_fish', methods=['GET', 'POST'])
 def add_fish():
     return render_template("add_fish.html")
 
@@ -49,9 +49,17 @@ def add_fish():
 def seacreatures():
     return render_template("seacreatures.html")
 
+@app.route('/add_seacreatures', methods=['GET', 'POST'])
+def add_seacreatures():
+    return render_template("add_seacreatures.html")
+
 @app.route('/flowers')
 def flowers():
     return render_template("flowers.html")
+
+@app.route('/add_flowers', methods=['GET', 'POST'])
+def add_flowers():
+    return render_template("add_flowers.html")
 
 @app.route('/items')
 def items():
