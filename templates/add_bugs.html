@@ -1,0 +1,16 @@
+{% extends "layouts/base.html" %}
+
+{% block body %}
+    <div class="container-lg">
+        <h1 class="display-6">Add Bugs</h1>
+        <form action="{{ url_for('add_bugs') }}" method="POST">
+            <div class="mb-3">
+                <label for="bug_name" class="form-label">Bug name</label>
+                <input type="text" class="form-control" id="bug_name" name="bug_name" required>
+            </div>
+            <input type="hidden" id="bug_user" name="bug_user" value="lindsay">
+        <button type="submit" class="btn btn-primary">Add Bugs</button>
+        </form>
+    </div>
+
+{% endblock %}

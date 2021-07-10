@@ -33,6 +33,10 @@ def add_art():
 def bugs():
     return render_template("bugs.html")
 
+@app.route('/add_bugs')
+def add_bugs():
+    return render_template("add_bugs.html")
+
 @app.route('/fish')
 def fish():
     return render_template("fish.html")
