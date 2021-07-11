@@ -87,7 +87,7 @@ CREATE TABLE Flowers
   UNIQUE (flowerName, flowerID)
 );
 
-CREATE TABLE SaharahItem
+CREATE TABLE SaharahItems
 (
   itemID INT NOT NULL AUTO_INCREMENT,
   itemName VARCHAR(255) NOT NULL,
