@@ -1,24 +1,80 @@
 {% extends "layouts/base.html" %}
 
 {% block body %}
-    <form action="{{ url_for('add_items') }}" method="GET">
+
+    <br>
+    <h6 class="display-6">Add Item by Name</h6>
+    <form action="{{ url_for('add_items') }}" method="POST">
         <div class="row">
-            <div class="col-2">
-                <button type="submit" class="btn btn-primary">Add Items</button>
+            <div class="col-6 mb-3">
+                <label for="item_name" class="form-label">Item name</label>
+                <input type="text" class="form-control" id="item_name" name="item_name" required>
             </div>
         </div>
-    </form>
-
-    <form action="{{ url_for('items') }}" method="POST">
-        <label for="filter_items_name" class="form-label">Filter items by name</label>
         <div class="row">
-            <div class="col-4">
-                <input type="text" class="form-control" id="filter_items_name" name="filter_items_name" placeholder="Item">
+            <div class="col-6 mb-3">
+                <label for="item_user" class="form-label">Choose a User:</label>
+                    <select class="form-control" id="item_user" name="item_user">
+                        <option value="lindsay">Lindsay</option>
+                        <option value="lyrics">Lyrics</option>
+                    </select>
             </div>
-            <div class="col-2">
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Add item</button>
+        </div>
+    </form>
+    <a href="{{ url_for('add_items') }}">Need to add multiple items?</a>
+
+    <br>
+    <br>
+    <hr />
+
+    <h6 class="display-6">View Items</h6>
+    <form action="{{ url_for('items') }}" method="POST">
+
+        <div class="row">
+
+            <div class="col-3">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected value="all">All Items</option>
+                    <option value="rug">Rugs</option>
+                    <option value="wallpaper">Wallpaper</option>
+                    <option value="flooring">Flooring</option>
+                </select>
+            </div>
+
+            <div class="col-3">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected value="all">View All</option>
+                    <option value="lindsay">Lindsay</option>
+                    <option value="lyrics">Lyrics</option>
+                </select>
+            </div>
+
+            <div class="col-3">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected value="A">Alphabetical: A - Z</option>
+                    <option value="Z">Alphabetical: Z - A</option>
+                </select>
+            </div>
+
+            <div class="mb-3 col-2">
                 <button type="submit" class="btn btn-primary">Filter</button>
             </div>
         </div>
     </form>
-
+        
+    <!-- <form action="{{ url_for('items') }}" method="POST">
+        <div class="row">
+            <label for="filter_items_name" class="form-label">Search for Items</label>
+            <div class="mb-3 col-6">
+                <input type="text" class="form-control" id="filter_items_name" name="filter_items_name" placeholder="Item Name">
+            </div>
+            <div class="mb-3 col-2">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+    </form> -->
+    
 {% endblock %}
