@@ -1,11 +1,54 @@
 {% extends "layouts/base.html" %}
 
 {% block body %}
-    <form action="{{ url_for('add_bugs') }}" method="GET">
+
+    <br>
+    <h6 class="display-6">Add Bug by Name</h6>
+    <form action="{{ url_for('add_bugs') }}" method="POST">
+        <div class="mb-3 col-6">
+            <label for="bug_name" class="form-label">Bug name</label>
+            <input type="text" class="form-control" id="bug_name" name="bug_name" required>
+        </div>
+        <input type="hidden" id="bug_user" name="bug_user" value="lindsay">
+        <button type="submit" class="btn btn-primary">Add Bug</button>
+    </form>
+
+    <br>
+    <hr />
+
+    <h6 class="display-6">View Bugs</h6>
+    <br>
+
+    <form action="{{ url_for('bugs') }}" method="POST">
+
         <div class="row">
-            <div class="col-2">
-                <button type="submit" class="btn btn-primary">Add Bugs</button>
+
+            <div class="col-3">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected value="all">All Bugs</option>
+                    <option value="catch">Currently Catchable</option>
+                </select>
+            </div>
+
+            <div class="col-3">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected value="all">View All</option>
+                    <option value="lindsay">Lindsay</option>
+                    <option value="not_lindsay">Uncollected Lindsay</option>
+                </select>
+            </div>
+
+            <div class="col-3">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected value="A">Alphabetical: A - Z</option>
+                    <option value="Z">Alphabetical: Z - A</option>
+                </select>
+            </div>
+
+            <div class="mb-3 col-2">
+                <button type="submit" class="btn btn-primary">Filter</button>
             </div>
         </div>
     </form>
+
 {% endblock %}
