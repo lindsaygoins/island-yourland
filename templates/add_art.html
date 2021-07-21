@@ -1,22 +1,11 @@
 {% extends "layouts/base.html" %}
 
 {% block body %}
-    <div class="container-lg">
-        <h1 class="display-6">Add Art</h1>
-        <form action="{{ url_for('add_art') }}" method="POST">
-            <div class="mb-3">
-                <label for="art_name" class="form-label">Art name</label>
-                <input type="text" class="form-control" id="art_name" name="art_name" required>
-            </div>
-            <div class="mb-3">
-                <label for="art_user" class="form-label">Choose a User:</label>
-                    <select class="form-control" id="art_user" name="art_user">
-                        <option value="lindsay">Lindsay</option>
-                        <option value="lyrics">Lyrics</option>
-                    </select>
-            </div>
+    <br>
+    <h6 class="display-6">Add Multiple Artworks</h6>
+
+    <form action="{{ url_for('add_art') }}" method="POST">
         <button type="submit" class="btn btn-primary">Add Art</button>
-        </form>
-    </div>
+    </form>
 
 {% endblock %}

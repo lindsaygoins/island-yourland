@@ -1,0 +1,18 @@
+{% extends "layouts/base.html" %}
+
+{% block body %}
+
+    <br>
+    <form action="{{ url_for('search_art') }}" method="POST">
+        <div class="row">
+            <label for="search_art" class="form-label">Search for Artwork</label>
+            <div class="mb-3 col-6">
+                <input type="text" class="form-control" id="search_art" name="search_art" placeholder="Artwork Name">
+            </div>
+            <div class="mb-3 col-2">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+    </form>
+
+{% endblock %}

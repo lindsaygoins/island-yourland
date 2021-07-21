@@ -25,13 +25,17 @@ def add_diys():
 def search_diys():
     return render_template("search_diys.html")
 
-@app.route('/art')
+@app.route('/art', methods=['GET', 'POST'])
 def art():
     return render_template("art.html")
 
 @app.route('/add_art', methods=['GET', 'POST'])
 def add_art():
     return render_template("add_art.html")
+
+@app.route('/search_art', methods=['GET', 'POST'])
+def search_art():
+    return render_template("search_art.html")
 
 @app.route('/bugs')
 def bugs():
