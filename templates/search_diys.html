@@ -1,0 +1,18 @@
+{% extends "layouts/base.html" %}
+
+{% block body %}
+
+    <br>
+    <form action="{{ url_for('search_diys') }}" method="POST">
+        <div class="row">
+            <label for="search_diys" class="form-label">Search for DIYs</label>
+            <div class="mb-3 col-6">
+                <input type="text" class="form-control" id="search_diys" name="search_diys" placeholder="DIY Name">
+            </div>
+            <div class="mb-3 col-2">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+    </form>
+
+{% endblock %}

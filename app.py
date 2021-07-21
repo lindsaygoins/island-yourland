@@ -13,13 +13,17 @@ def root():
 def about():
     return render_template("about.html")
 
-@app.route('/diys')
+@app.route('/diys', methods=['GET', 'POST'])
 def diys():
     return render_template("diys.html")
 
 @app.route('/add_diys', methods=['GET', 'POST'])
 def add_diys():
     return render_template("add_diy.html")
+
+@app.route('/search_diys', methods=['GET', 'POST'])
+def search_diys():
+    return render_template("search_diys.html")
 
 @app.route('/art')
 def art():
