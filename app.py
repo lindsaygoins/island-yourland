@@ -61,13 +61,17 @@ def flowers():
 def add_flowers():
     return render_template("add_flowers.html")
 
-@app.route('/items')
+@app.route('/items', methods=['GET', 'POST'])
 def items():
     return render_template("items.html")
 
 @app.route('/add_items', methods=['GET', 'POST'])
 def add_items():
     return render_template("add_items.html")
+
+@app.route('/search_items', methods=['GET', 'POST'])
+def search_items():
+    return render_template("search_items.html")
 
 
 if __name__ == "__main__":

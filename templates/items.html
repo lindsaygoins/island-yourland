@@ -31,6 +31,11 @@
     <hr />
 
     <h6 class="display-6">View Items</h6>
+    <a href="{{ url_for('search_items') }}">Need to search for a specific item?</a>
+
+    <br>
+    <br>
+    
     <form action="{{ url_for('items') }}" method="POST">
 
         <div class="row">
@@ -64,17 +69,5 @@
             </div>
         </div>
     </form>
-        
-    <!-- <form action="{{ url_for('items') }}" method="POST">
-        <div class="row">
-            <label for="filter_items_name" class="form-label">Search for Items</label>
-            <div class="mb-3 col-6">
-                <input type="text" class="form-control" id="filter_items_name" name="filter_items_name" placeholder="Item Name">
-            </div>
-            <div class="mb-3 col-2">
-                <button type="submit" class="btn btn-primary">Search</button>
-            </div>
-        </div>
-    </form> -->
     
 {% endblock %}
