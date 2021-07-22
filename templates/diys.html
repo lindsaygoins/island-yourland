@@ -61,6 +61,8 @@
                         <option selected value="all">View All</option>
                         <option value="lindsay">Lindsay</option>
                         <option value="lyrics">Lyrics</option>
+                        <option value="not_lindsay">Uncollected Lindsay</option>
+                        <option value="not_lyrics">Uncollected Lyrics</option>
                     </select>
                 </div>
 
@@ -77,6 +79,25 @@
 
             </div>
         </form>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">DIY Name</th>
+                    <th scope="col">DIY Category</th>
+                    <th scope="col">Lindsay</th>
+                    <th scope="col">Lyrics</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Apple Dress</td>
+                    <td>Equipment</td>
+                    <td><input type="checkbox" value="1" disabled checked></td>
+                    <td><input type="checkbox" value="Boat" disabled></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
         
 {% endblock %}
