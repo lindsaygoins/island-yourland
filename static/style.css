@@ -9,3 +9,29 @@
 .navbar-brand {
     color: #3E803A !important;
 }
+
+button {
+    background: #3E803A !important;
+    border-color: #3E803A !important;
+    color: white !important;
+}
+
+body {
+    color: #3E803A;
+    background-color: white;
+    background-image: url("https://live.staticflickr.com/5456/9299889586_4ac962ce6e_b.jpg");
+}
+
+.main-content {
+    background: #D1FCCE;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    min-height: 100px;
+}
+
+.display-6 {
+    margin-bottom: 20px;
+}

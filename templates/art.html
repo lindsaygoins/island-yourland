@@ -2,73 +2,79 @@
 
 {% block body %}
 
-    <br>
-    <h6 class="display-6">Add Art by Name</h6>
-    <form action="{{ url_for('add_art') }}" method="POST">
-        <div class="row">
-            <div class="col-6 mb-3">
-                <label for="art_name" class="form-label">Art name</label>
-                <input type="text" class="form-control" id="art_name" name="art_name" required>
+    <div class="container-lg main-content">
+        <h6 class="display-6">Add Art by Name</h6>
+        <form action="{{ url_for('add_art') }}" method="POST">
+            <div class="row">
+
+                <div class="col-6 mb-3">
+                    <label for="art_name" class="form-label">Art name</label>
+                    <input type="text" class="form-control" id="art_name" name="art_name" required>
+                </div>
+
             </div>
-        </div>
-        <div class="row">
-            <div class="col-6 mb-3">
-                <label for="art_user" class="form-label">Choose a User:</label>
-                    <select class="form-control" id="art_user" name="art_user">
+            <div class="row">
+
+                <div class="col-6 mb-3">
+                    <label for="art_user" class="form-label">Choose a User:</label>
+                        <select class="form-control" id="art_user" name="art_user">
+                            <option value="lindsay">Lindsay</option>
+                            <option value="lyrics">Lyrics</option>
+                        </select>
+                </div>
+
+            </div>
+
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Add Art</button>
+            </div>
+
+        </form>
+        
+        <a href="{{ url_for('add_art') }}" id="art_add_link">Need to add multiple pieces of art?</a>
+        <br>
+        <br>
+        <hr />
+
+        <h6 class="display-6">View Art</h6>
+        <a href="{{ url_for('search_art') }}" id="art_search_link">Need to search for a specific piece of art?</a>
+        <br>
+        <br>
+
+        <form action="{{ url_for('art') }}" method="POST">
+            <div class="row">
+
+                <div class="col-3">
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected value="all">All Artwork</option>
+                        <option value="rug">Paintings</option>
+                        <option value="wallpaper">Statues</option>
+                    </select>
+                </div>
+
+                <div class="col-3">
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected value="all">View All</option>
                         <option value="lindsay">Lindsay</option>
                         <option value="lyrics">Lyrics</option>
+                        <option value="not_lindsay">Uncollected Lindsay</option>
+                        <option value="not_lyrics">Uncollected Lyrics</option>
                     </select>
+                </div>
+
+                <div class="col-3">
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected value="A">Alphabetical: A - Z</option>
+                        <option value="Z">Alphabetical: Z - A</option>
+                    </select>
+                </div>
+
+                <div class="mb-3 col-2">
+                    <button type="submit" class="btn btn-primary">Filter</button>
+                </div>
+
             </div>
-        </div>
-        <div class="mb-3">
-            <button type="submit" class="btn btn-primary">Add Art</button>
-        </div>
-    </form>
-    <a href="{{ url_for('add_art') }}">Need to add multiple pieces of art?</a>
-
-    <br>
-    <br>
-    <hr />
-
-    <h6 class="display-6">View Art</h6>
-    <a href="{{ url_for('search_art') }}">Need to search for a specific piece of art?</a>
-
-    <br>
-    <br>
-    
-    <form action="{{ url_for('art') }}" method="POST">
-
-        <div class="row">
-
-            <div class="col-3">
-                <select class="form-select" aria-label="Default select example">
-                    <option selected value="all">All Artwork</option>
-                    <option value="rug">Paintings</option>
-                    <option value="wallpaper">Statues</option>
-                </select>
-            </div>
-
-            <div class="col-3">
-                <select class="form-select" aria-label="Default select example">
-                    <option selected value="all">View All</option>
-                    <option value="lindsay">Lindsay</option>
-                    <option value="lyrics">Lyrics</option>
-                    <option value="not_lindsay">Uncollected Lindsay</option>
-                    <option value="not_lyrics">Uncollected Lyrics</option>
-                </select>
-            </div>
-
-            <div class="col-3">
-                <select class="form-select" aria-label="Default select example">
-                    <option selected value="A">Alphabetical: A - Z</option>
-                    <option value="Z">Alphabetical: Z - A</option>
-                </select>
-            </div>
-
-            <div class="mb-3 col-2">
-                <button type="submit" class="btn btn-primary">Filter</button>
-            </div>
-        </div>
-    </form>
+        </form>
+    </div>
 
 {% endblock %}

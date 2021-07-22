@@ -2,53 +2,59 @@
 
 {% block body %}
 
-    <br>
-    <h6 class="display-6">Add Fish by Name</h6>
-    <form action="{{ url_for('add_fish') }}" method="POST">
-        <div class="mb-3 col-6">
-            <label for="fish_name" class="form-label">Fish name</label>
-            <input type="text" class="form-control" id="fish_name" name="fish_name" required>
-        </div>
-        <input type="hidden" id="fish_user" name="fish_user" value="lindsay">
-        <button type="submit" class="btn btn-primary">Add Fish</button>
-    </form>
+    <div class="container-lg main-content">
+        <h6 class="display-6">Add Fish by Name</h6>
+        <form action="{{ url_for('add_fish') }}" method="POST">
+            <div class="row">
 
-    <br>
-    <hr />
+                <div class="mb-3 col-6">
+                    <input type="text" class="form-control" id="fish_name" name="fish_name" placeholder="Fish Name" required>
+                </div>
 
-    <h6 class="display-6">View Fish</h6>
-    <br>
+                <input type="hidden" id="fish_user" name="fish_user" value="lindsay">
 
-    <form action="{{ url_for('fish') }}" method="POST">
+                <div class="mb-3 col-2">
+                    <button type="submit" class="btn btn-primary">Add Fish</button>
+                </div>
 
-        <div class="row">
-
-            <div class="col-3">
-                <select class="form-select" aria-label="Default select example">
-                    <option selected value="all">All Fish</option>
-                    <option value="catch">Currently Catchable</option>
-                </select>
             </div>
+        </form>
 
-            <div class="col-3">
-                <select class="form-select" aria-label="Default select example">
-                    <option selected value="all">View All</option>
-                    <option value="lindsay">Lindsay</option>
-                    <option value="not_lindsay">Uncollected Lindsay</option>
-                </select>
-            </div>
+        <br>
+        <hr />
 
-            <div class="col-3">
-                <select class="form-select" aria-label="Default select example">
-                    <option selected value="A">Alphabetical: A - Z</option>
-                    <option value="Z">Alphabetical: Z - A</option>
-                </select>
-            </div>
+        <h6 class="display-6">View Fish</h6>
+        <form action="{{ url_for('fish') }}" method="POST">
+            <div class="row">
 
-            <div class="mb-3 col-2">
-                <button type="submit" class="btn btn-primary">Filter</button>
+                <div class="col-3">
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected value="all">All Fish</option>
+                        <option value="catch">Currently Catchable</option>
+                    </select>
+                </div>
+
+                <div class="col-3">
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected value="all">View All</option>
+                        <option value="lindsay">Lindsay</option>
+                        <option value="not_lindsay">Uncollected Lindsay</option>
+                    </select>
+                </div>
+
+                <div class="col-3">
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected value="A">Alphabetical: A - Z</option>
+                        <option value="Z">Alphabetical: Z - A</option>
+                    </select>
+                </div>
+
+                <div class="mb-3 col-2">
+                    <button type="submit" class="btn btn-primary">Filter</button>
+                </div>
+                
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 
 {% endblock %}
