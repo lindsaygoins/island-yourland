@@ -2,17 +2,21 @@
 
 {% block body %}
 
-    <br>
-    <form action="{{ url_for('search_items') }}" method="POST">
-        <div class="row">
-            <label for="search_items" class="form-label">Search for Items</label>
-            <div class="mb-3 col-6">
-                <input type="text" class="form-control" id="search_items" name="search_items" placeholder="Item Name">
+    <div class="container-lg main-content">
+        <h6 class="display-6">Search for Items</h6>
+        <form action="{{ url_for('search_items') }}" method="POST">
+            <div class="row">
+    
+                <div class="mb-3 col-6">
+                    <input type="text" class="form-control" id="search_items" name="search_items" placeholder="Item Name">
+                </div>
+
+                <div class="mb-3 col-2">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+                
             </div>
-            <div class="mb-3 col-2">
-                <button type="submit" class="btn btn-primary">Search</button>
-            </div>
-        </div>
-    </form>
+        </form>
+    </div>
 
 {% endblock %}
