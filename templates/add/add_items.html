@@ -2,11 +2,40 @@
 
 {% block body %}
 
-    <br>
-    <h6 class="display-6">Add Multiple Items</h6>
-
-    <form action="{{ url_for('add_items') }}" method="POST">
-        <button type="submit" class="btn btn-primary">Add Item</button>
-    </form>
+    <div class="container-lg main-content">
+        <h6 class="display-6">Add Multiple Items</h6>
+        <form action="{{ url_for('add_items') }}" method="POST">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Item Name</th>
+                        <th scope="col">Item Type</th>
+                        <th scope="col">Rug Size</th>
+                        <th scope="col">Lindsay</th>
+                        <th scope="col">Lyrics</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Black-design kitchen mat</td>
+                        <td>Rug</td>
+                        <td>Small</td>
+                        <td><input type="checkbox" value="1"></td>
+                        <td><input type="checkbox" value="0"></td>
+                    </tr>
+                    <tr>
+                        <td>Ancient Wall</td>
+                        <td>Wallpaper</td>
+                        <td>N/A</td>
+                        <td><input type="checkbox" value="1"></td>
+                        <td><input type="checkbox" value="0"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Add Item</button>
+            </div>
+        </form>
+    </div>
 
 {% endblock %}

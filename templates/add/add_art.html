@@ -1,11 +1,32 @@
 {% extends "layouts/base.html" %}
 
 {% block body %}
-    <br>
-    <h6 class="display-6">Add Multiple Artworks</h6>
 
-    <form action="{{ url_for('add_art') }}" method="POST">
-        <button type="submit" class="btn btn-primary">Add Art</button>
-    </form>
+    <div class="container-lg main-content">
+        <h6 class="display-6">Add Multiple Artworks</h6>
+        <form action="{{ url_for('add_art') }}" method="POST">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Artwork Name</th>
+                        <th scope="col">Artwork Type</th>
+                        <th scope="col">Lindsay</th>
+                        <th scope="col">Lyrics</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Moving Painting</td>
+                        <td>Painting</td>
+                        <td><input type="checkbox" value="1"></td>
+                        <td><input type="checkbox" value="0"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Add Art</button>
+            </div>
+        </form>
+    </div>
 
 {% endblock %}

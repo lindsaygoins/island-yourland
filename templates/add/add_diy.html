@@ -2,11 +2,31 @@
 
 {% block body %}
     
-    <br>
-    <h6 class="display-6">Add Multiple DIYs</h6>
-
-    <form action="{{ url_for('add_diys') }}" method="POST">
-        <button type="submit" class="btn btn-primary">Add DIY</button>
-    </form>
+    <div class="container-lg main-content">
+        <h6 class="display-6">Add Multiple DIYs</h6>
+        <form action="{{ url_for('add_diys') }}" method="POST">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">DIY Name</th>
+                        <th scope="col">DIY Category</th>
+                        <th scope="col">Lindsay</th>
+                        <th scope="col">Lyrics</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Apple Dress</td>
+                        <td>Equipment</td>
+                        <td><input type="checkbox" value="1"></td>
+                        <td><input type="checkbox" value="0"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Add DIY</button>
+            </div>
+        </form>
+    </div>
 
 {% endblock %}
