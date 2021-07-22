@@ -2,79 +2,81 @@
 
 {% block body %}
 
-    <br>
-    <h6 class="display-6">Add DIY by Name</h6>
-    <form action="{{ url_for('add_diys') }}" method="POST">
-        <div class="row">
-            <div class="col-6 mb-3">
-                <label for="diy_name" class="form-label">DIY name</label>
-                <input type="text" class="form-control" id="diy_name" name="diy_name" required>
+    <div class="container-lg main-content">
+        <h6 class="display-6">Add DIY by Name</h6>
+        <form action="{{ url_for('add_diys') }}" method="POST">
+            
+            <div class="row">
+                <div class="col-6 mb-3">
+                    <input type="text" class="form-control" id="diy_name" name="diy_name" placeholder="DIY Name" required>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-6 mb-3">
-                <label for="diy_user" class="form-label">Choose a User:</label>
-                    <select class="form-control" id="diy_user" name="diy_user">
+
+            <div class="row">
+                <div class="col-6 mb-3">
+                    <label for="diy_user" class="form-label">Choose a User:</label>
+                        <select class="form-control" id="diy_user" name="diy_user">
+                            <option value="lindsay">Lindsay</option>
+                            <option value="lyrics">Lyrics</option>
+                            <option value="not_lindsay">Uncollected Lindsay</option>
+                            <option value="not_lyrics">Uncollected Lyrics</option>
+                        </select>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Add DIY</button>
+            </div>
+
+        </form>
+        
+        <a href="{{ url_for('add_diys') }}">Need to add multiple DIYs?</a>
+        <br>
+        <br>
+        <hr />
+
+        <h6 class="display-6">View DIYs</h6>
+        <a href="{{ url_for('search_diys') }}">Need to search for a specific DIY?</a>
+        <br>
+        <br>
+
+        <form action="{{ url_for('diys') }}" method="POST">
+            <div class="row">
+
+                <div class="col-3">
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected value="all">All DIYs</option>
+                        <option value="tool">Tools</option>
+                        <option value="houseware">Housewares</option>
+                        <option value="miscellaneous">Miscellaneous</option>
+                        <option value="wall-mounted">Wall-Mounted</option>
+                        <option value="wall/floor/rug">Wallpaper/Floors/Rugs</option>
+                        <option value="equipment">Equipment</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="col-3">
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected value="all">View All</option>
                         <option value="lindsay">Lindsay</option>
                         <option value="lyrics">Lyrics</option>
-                        <option value="not_lindsay">Uncollected Lindsay</option>
-                        <option value="not_lyrics">Uncollected Lyrics</option>
                     </select>
+                </div>
+
+                <div class="col-3">
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected value="A">Alphabetical: A - Z</option>
+                        <option value="Z">Alphabetical: Z - A</option>
+                    </select>
+                </div>
+
+                <div class="mb-3 col-2">
+                    <button type="submit" class="btn btn-primary">Filter</button>
+                </div>
+
             </div>
-        </div>
-        <div class="mb-3">
-            <button type="submit" class="btn btn-primary">Add DIY</button>
-        </div>
-    </form>
-    <a href="{{ url_for('add_diys') }}">Need to add multiple DIYs?</a>
-
-    <br>
-    <br>
-    <hr />
-
-    <h6 class="display-6">View DIYs</h6>
-    <a href="{{ url_for('search_diys') }}">Need to search for a specific DIY?</a>
-
-    <br>
-    <br>
-
-    <form action="{{ url_for('diys') }}" method="POST">
-
-        <div class="row">
-
-            <div class="col-3">
-                <select class="form-select" aria-label="Default select example">
-                    <option selected value="all">All DIYs</option>
-                    <option value="tool">Tools</option>
-                    <option value="houseware">Housewares</option>
-                    <option value="miscellaneous">Miscellaneous</option>
-                    <option value="wall-mounted">Wall-Mounted</option>
-                    <option value="wall/floor/rug">Wallpaper/Floors/Rugs</option>
-                    <option value="equipment">Equipment</option>
-                    <option value="other">Other</option>
-                </select>
-            </div>
-
-            <div class="col-3">
-                <select class="form-select" aria-label="Default select example">
-                    <option selected value="all">View All</option>
-                    <option value="lindsay">Lindsay</option>
-                    <option value="lyrics">Lyrics</option>
-                </select>
-            </div>
-
-            <div class="col-3">
-                <select class="form-select" aria-label="Default select example">
-                    <option selected value="A">Alphabetical: A - Z</option>
-                    <option value="Z">Alphabetical: Z - A</option>
-                </select>
-            </div>
-
-            <div class="mb-3 col-2">
-                <button type="submit" class="btn btn-primary">Filter</button>
-            </div>
-        </div>
-    </form>
+        </form>
+    </div>
         
-
 {% endblock %}
