@@ -19,11 +19,11 @@ def diys():
 
 @app.route('/add_diys', methods=['GET', 'POST'])
 def add_diys():
-    return render_template("add_diy.html")
+    return render_template("/add/add_diy.html")
 
 @app.route('/search_diys', methods=['GET', 'POST'])
 def search_diys():
-    return render_template("search_diys.html")
+    return render_template("/search/search_diys.html")
 
 @app.route('/art', methods=['GET', 'POST'])
 def art():
@@ -31,43 +31,11 @@ def art():
 
 @app.route('/add_art', methods=['GET', 'POST'])
 def add_art():
-    return render_template("add_art.html")
+    return render_template("/add/add_art.html")
 
 @app.route('/search_art', methods=['GET', 'POST'])
 def search_art():
-    return render_template("search_art.html")
-
-@app.route('/bugs', methods=['GET', 'POST'])
-def bugs():
-    return render_template("bugs.html")
-
-@app.route('/add_bugs', methods=['GET', 'POST'])
-def add_bugs():
-    return render_template("add_bugs.html")
-
-@app.route('/fish', methods=['GET', 'POST'])
-def fish():
-    return render_template("fish.html")
-
-@app.route('/add_fish', methods=['GET', 'POST'])
-def add_fish():
-    return render_template("add_fish.html")
-
-@app.route('/seacreatures', methods=['GET', 'POST'])
-def seacreatures():
-    return render_template("seacreatures.html")
-
-@app.route('/add_seacreatures', methods=['GET', 'POST'])
-def add_seacreatures():
-    return render_template("add_seacreatures.html")
-
-@app.route('/flowers', methods=['GET', 'POST'])
-def flowers():
-    return render_template("flowers.html")
-
-@app.route('/add_flowers', methods=['GET', 'POST'])
-def add_flowers():
-    return render_template("add_flowers.html")
+    return render_template("/search/search_art.html")
 
 @app.route('/items', methods=['GET', 'POST'])
 def items():
@@ -75,11 +43,43 @@ def items():
 
 @app.route('/add_items', methods=['GET', 'POST'])
 def add_items():
-    return render_template("add_items.html")
+    return render_template("/add/add_items.html")
 
 @app.route('/search_items', methods=['GET', 'POST'])
 def search_items():
-    return render_template("search_items.html")
+    return render_template("/search/search_items.html")
+
+@app.route('/flowers', methods=['GET', 'POST'])
+def flowers():
+    return render_template("flowers.html")
+
+@app.route('/add_flowers', methods=['GET', 'POST'])
+def add_flowers():
+    return render_template("/add/add_flowers.html")
+
+@app.route('/bugs', methods=['GET', 'POST'])
+def bugs():
+    return render_template("bugs.html")
+
+@app.route('/add_bugs', methods=['GET', 'POST'])
+def add_bugs():
+    return render_template("/add/add_bugs.html")
+
+@app.route('/fish', methods=['GET', 'POST'])
+def fish():
+    return render_template("fish.html")
+
+@app.route('/add_fish', methods=['GET', 'POST'])
+def add_fish():
+    return render_template("/add/add_fish.html")
+
+@app.route('/seacreatures', methods=['GET', 'POST'])
+def seacreatures():
+    return render_template("seacreatures.html")
+
+@app.route('/add_seacreatures', methods=['GET', 'POST'])
+def add_seacreatures():
+    return render_template("/add/add_seacreatures.html")
 
 
 if __name__ == "__main__":
