@@ -1,29 +1,25 @@
 CREATE TABLE Diys
 (
-  diyID INT NOT NULL AUTO_INCREMENT,
-  diyName VARCHAR(255) NOT NULL,
+  diyID SERIAL PRIMARY KEY,
+  diyName VARCHAR(255) NOT NULL UNIQUE,
   diyCategory VARCHAR(255) NOT NULL,
   lindsay BOOLEAN NOT NULL,
-  lyrics BOOLEAN NOT NULL,
-  PRIMARY KEY (diyID),
-  UNIQUE (diyName, diyID)
+  lyrics BOOLEAN NOT NULL
 );
 
 CREATE TABLE Art
 (
-  artID INT NOT NULL AUTO_INCREMENT,
-  artName VARCHAR(255) NOT NULL,
+  artID SERIAL PRIMARY KEY,
+  artName VARCHAR(255) NOT NULL UNIQUE,
   artType VARCHAR(255) NOT NULL,
   lindsay BOOLEAN NOT NULL,
-  lyrics BOOLEAN NOT NULL,
-  PRIMARY KEY (artID),
-  UNIQUE (artName, artID)
+  lyrics BOOLEAN NOT NULL
 );
 
 CREATE TABLE Bugs
 (
-  bugID INT NOT NULL,
-  bugName VARCHAR(255) NOT NULL,
+  bugID INT PRIMARY KEY,
+  bugName VARCHAR(255) NOT NULL UNIQUE,
   location VARCHAR(255) NOT NULL,
   sellPrice INT NOT NULL,
   lindsay BOOLEAN NOT NULL,
@@ -34,15 +30,13 @@ CREATE TABLE Bugs
   altHourStart INT,
   altHourEnd INT,
   altMonthStart INT,
-  altMonthEnd INT,
-  PRIMARY KEY (bugID),
-  UNIQUE (bugName, bugID)
+  altMonthEnd INT
 );
 
 CREATE TABLE Fish
 (
-  fishID INT NOT NULL,
-  fishName VARCHAR(255) NOT NULL,
+  fishID INT PRIMARY KEY,
+  fishName VARCHAR(255) NOT NULL UNIQUE,
   location VARCHAR(255) NOT NULL,
   shadowSize VARCHAR(255) NOT NULL,
   sellPrice INT NOT NULL,
@@ -54,15 +48,13 @@ CREATE TABLE Fish
   altHourStart INT,
   altHourEnd INT,
   altMonthStart INT,
-  altMonthEnd INT,
-  PRIMARY KEY (fishID),
-  UNIQUE (fishName, fishID)
+  altMonthEnd INT
 );
 
 CREATE TABLE SeaCreatures
 (
-  seaCreatureID INT NOT NULL,
-  seaCreatureName VARCHAR(255) NOT NULL,
+  seaCreatureID INT PRIMARY KEY,
+  seaCreatureName VARCHAR(255) NOT NULL UNIQUE,
   sellPrice INT NOT NULL,
   lindsay BOOLEAN NOT NULL,
   hourStart INT NOT NULL,
@@ -72,29 +64,23 @@ CREATE TABLE SeaCreatures
   altHourStart INT,
   altHourEnd INT,
   altMonthStart INT,
-  altMonthEnd INT,
-  PRIMARY KEY (fishID),
-  UNIQUE (fishName, fishID)
+  altMonthEnd INT
 );
 
 CREATE TABLE Flowers
 (
-  flowerID INT NOT NULL AUTO_INCREMENT,
-  flowerName VARCHAR(255) NOT NULL,
+  flowerID SERIAL PRIMARY KEY,
+  flowerName VARCHAR(255) NOT NULL UNIQUE,
   flowerFamily VARCHAR(255) NOT NULL,
-  lindsay BOOLEAN NOT NULL,
-  PRIMARY KEY (flowerID),
-  UNIQUE (flowerName, flowerID)
+  lindsay BOOLEAN NOT NULL
 );
 
 CREATE TABLE SaharahItems
 (
-  itemID INT NOT NULL AUTO_INCREMENT,
-  itemName VARCHAR(255) NOT NULL,
+  itemID SERIAL PRIMARY KEY,
+  itemName VARCHAR(255) NOT NULL UNIQUE,
   itemCategory VARCHAR(255) NOT NULL,
   rugSize VARCHAR(255),
   lindsay BOOLEAN NOT NULL,
-  lyrics BOOLEAN NOT NULL,
-  PRIMARY KEY (itemID),
-  UNIQUE (itemName, itemID)
+  lyrics BOOLEAN NOT NULL
 );
