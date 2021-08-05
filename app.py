@@ -110,7 +110,24 @@ def search_art():
 
 @app.route('/items', methods=['GET', 'POST'])
 def items():
-    return render_template("items.html")
+    if request.method == 'POST':
+
+        # Get filter parameters
+        data =  {
+            'filter_items': request.form.get('filter_items'),
+            'filter_collect': request.form.get('filter_collect'),
+            'sort': request.form.get('sort')
+        }
+
+        # Building the query
+        query = select_items(data)
+
+        # Execute query
+        result = db.session.execute(query)
+        
+        return render_template("items.html", filter_data=result)
+    else:
+        return render_template("items.html")
 
 @app.route('/add_items', methods=['GET', 'POST'])
 def add_items():
@@ -118,7 +135,22 @@ def add_items():
 
 @app.route('/search_items', methods=['GET', 'POST'])
 def search_items():
-    return render_template("/search/search_items.html")
+    if request.method == 'POST':
+
+        # Get search parameters
+        data =  {
+            'search_items': request.form.get('search_items'),
+        }
+
+        # Building the query
+        query = select_item_name(data)
+
+        # Execute query
+        result = db.session.execute(query)
+
+        return render_template("/search/search_items.html", search_data=result)
+    else:
+        return render_template("/search/search_items.html")
 
 @app.route('/flowers', methods=['GET', 'POST'])
 def flowers():

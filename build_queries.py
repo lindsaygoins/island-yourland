@@ -68,6 +68,38 @@ def select_art_name(data):
     query = select(Art).where(Art.artname == data['search_art'])
     return query
 
+def select_items(data):
+    """Build the SELECT query for Saharah's items based on user filters."""
+    if data['filter_items'] == "all":
+            query = select(Saharahitem)
+    else:
+        query = select(Saharahitem).where(Saharahitem.itemcategory == data['filter_items'])
+
+    # View items Lindsay has collected or not collected
+    if data['filter_collect'] == "lindsay":
+        query = query.where(Saharahitem.lindsay == '1')
+    elif data['filter_collect'] == "not_lindsay":
+        query = query.where(Saharahitem.lindsay == '0')
+
+    # View items Lyrics has collected or not collected
+    elif data['filter_collect'] == "lyrics":
+        query = query.where(Saharahitem.lyrics == '1')
+    elif data['filter_collect'] == "not_lyrics":
+        query = query.where(Saharahitem.lyrics == '0')
+
+    # Sort by alphabet
+    if data['sort'] == 'A':
+        query = query.order_by(Saharahitem.itemname.asc())
+    elif data['sort'] == 'Z':
+        query = query.order_by(Saharahitem.itemname.desc())
+
+    return query
+
+def select_item_name(data):
+    """Build the SELECT query for Saharah's items based on item name."""
+    query = select(Saharahitem).where(Saharahitem.itemname == data['search_items'])
+    return query
+
 def select_bugs(data):
     """Build the SELECT query for bugs based on user filters."""
 
