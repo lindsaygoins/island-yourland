@@ -157,7 +157,44 @@ def add_fish():
 
 @app.route('/seacreatures', methods=['GET', 'POST'])
 def seacreatures():
-    return render_template("seacreatures.html")
+    if request.method == 'POST':
+
+        # Get filter parameters
+        data =  {
+            'filter_sea_creatures': request.form.get('filter_sea_creatures'),
+            'filter_collect': request.form.get('filter_collect'),
+            'sort': request.form.get('sort')
+        }
+
+        # Building the query
+        query = select_sea_creatures(data)
+
+        # Execute query
+        result = db.session.execute(query)
+
+        # Save date & time results into readable format
+        rows = []
+        for row in result:
+            rows.append(deepcopy(row[0]))
+
+        for row in rows:
+            row.monthstart = convert_date(row.monthstart)
+            row.monthend = convert_date(row.monthend)
+
+            if row.altmonthstart:
+                row.altmonthstart = convert_date(row.altmonthstart)
+                row.altmonthend = convert_date(row.altmonthend)
+
+            row.hourstart = convert_time(row.hourstart)
+            row.hourend = convert_time(row.hourend)
+
+            if row.althourstart:
+                row.althourstart = convert_time(row.althourstart)
+                row.althourend = convert_time(row.althourend)
+            
+        return render_template("seacreatures.html", filter_data=rows)
+    else:
+        return render_template("seacreatures.html")
 
 @app.route('/add_seacreatures', methods=['GET', 'POST'])
 def add_seacreatures():

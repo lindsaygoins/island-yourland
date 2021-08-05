@@ -192,3 +192,98 @@ def select_fish(data):
         query = query.order_by(Fish.fishid.asc())
 
     return query
+
+
+def select_sea_creatures(data):
+    '''Builds the SELECT query for sea creatures based on user filters.'''
+
+    if data['filter_sea_creatures'] == "all":
+            query = select(Seacreature)
+    else:
+        month = datetime.now().month - 1
+        query = select(Seacreature).where(
+        
+        # If the current month is between either the regular season interval or the alternate season interval
+        or_(
+            or_(
+                
+                # If the start month is at the beginning of the year and the end month is at the end of the year and the current month is in between
+                and_(Seacreature.monthstart <= month, month <= Seacreature.monthend), 
+                    
+                    or_(
+                        # If the start month is at the end of the year & the end month is at the beginning
+
+                        # If the current month is at the beginning of the year
+                        and_(Seacreature.monthstart > Seacreature.monthend, and_(Seacreature.monthstart >= month, month <= Seacreature.monthend)),
+
+                        # If the current month is at the end of the year
+                        and_(Seacreature.monthstart > Seacreature.monthend, and_(Seacreature.monthstart <= month, month >= Seacreature.monthend))),
+            or_(
+                
+                # If the alternate start month is at the beginning of the year and the alternate end month is at the end of the year and the current month is in between
+                and_(Seacreature.altmonthstart <= month, month <= Seacreature.altmonthend),
+
+                    or_ (
+                        # If the alternate start month is at the end of the year & the alternate end month is at the beginning
+
+                        # If the current month is at the beginning of the year
+                        and_(Seacreature.altmonthstart > Seacreature.altmonthend, and_(Seacreature.altmonthstart >= month, month <= Seacreature.altmonthend)),
+
+                        # If the current month is at the end of the year
+                        and_(Seacreature.altmonthstart > Seacreature.altmonthend, and_(Seacreature.altmonthstart <= month, month >= Seacreature.altmonthend))),
+                )       
+                )
+            )
+        )
+
+        time = datetime.now().hour
+        query = query.where(
+        
+        # If the current hour is between either the regular time interval or the alternate time interval
+        or_(
+            or_(
+                
+                # If the start hour is at the beginning of the day and the end hour is at the end of the day and the current hour is in between
+                and_(Seacreature.hourstart <= time, time <= Seacreature.hourend), 
+                    
+                    or_(
+                        # If the start hour is at the end of the day & the end hour is at the beginning
+
+                        # If the current hour is at the beginning of the day
+                        and_(Seacreature.hourstart > Seacreature.hourend, and_(Seacreature.hourstart >= time, time <= Seacreature.hourend)),
+
+                        # If the current hour is at the end of the day
+                        and_(Seacreature.hourstart > Seacreature.hourend, and_(Seacreature.hourstart <= time, time >= Seacreature.hourend))),
+            or_(
+                
+                # If the alternate start hour is at the beginning of the day and the alternate end hour is at the end of the day and the current hour is in between
+                and_(Seacreature.althourstart <= time, time <= Seacreature.althourend),
+
+                    or_ (
+                        # If the alternate start hour is at the end of the day & the alternate end hour is at the beginning
+
+                        # If the current hour is at the beginning of the day
+                        and_(Seacreature.althourstart > Seacreature.althourend, and_(Seacreature.althourstart >= time, time <= Seacreature.althourend)),
+
+                        # If the current hour is at the end of the day
+                        and_(Seacreature.althourstart > Seacreature.althourend, and_(Seacreature.althourstart <= time, time >= Seacreature.althourend))),
+                )       
+                )
+            )
+        )
+
+    # View sea creatures Lindsay has collected or not collected
+    if data['filter_collect'] == "lindsay":
+        query = query.where(Seacreature.lindsay == '1')
+    elif data['filter_collect'] == "not_lindsay":
+        query = query.where(Seacreature.lindsay == '0')
+
+    # Sort by alphabet or ID
+    if data['sort'] == 'A':
+        query = query.order_by(Seacreature.seacreaturename.asc())
+    elif data['sort'] == 'Z':
+        query = query.order_by(Seacreature.seacreaturename.desc())
+    else:
+        query = query.order_by(Seacreature.seacreatureid.asc())
+
+    return query
