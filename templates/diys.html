@@ -44,20 +44,20 @@
             <div class="row">
 
                 <div class="col-3">
-                    <select class="form-select" aria-label="Default select example">
+                    <select class="form-select" aria-label="Default select example" name="filter_diys">
                         <option selected value="all">All DIYs</option>
-                        <option value="tool">Tools</option>
-                        <option value="houseware">Housewares</option>
-                        <option value="miscellaneous">Miscellaneous</option>
-                        <option value="wall-mounted">Wall-Mounted</option>
-                        <option value="wall/floor/rug">Wallpaper/Floors/Rugs</option>
-                        <option value="equipment">Equipment</option>
-                        <option value="other">Other</option>
+                        <option value="Tools">Tools</option>
+                        <option value="Housewares">Housewares</option>
+                        <option value="Miscellaneous">Miscellaneous</option>
+                        <option value="Wall-Mounted">Wall-Mounted</option>
+                        <option value="Wall/Floor/Rug">Wallpaper/Floors/Rugs</option>
+                        <option value="Equipment">Equipment</option>
+                        <option value="Other">Other</option>
                     </select>
                 </div>
 
                 <div class="col-3">
-                    <select class="form-select" aria-label="Default select example">
+                    <select class="form-select" aria-label="Default select example" name="filter_collect">
                         <option selected value="all">View All</option>
                         <option value="lindsay">Lindsay</option>
                         <option value="lyrics">Lyrics</option>
@@ -67,7 +67,7 @@
                 </div>
 
                 <div class="col-3">
-                    <select class="form-select" aria-label="Default select example">
+                    <select class="form-select" aria-label="Default select example" name="sort">
                         <option selected value="A">Alphabetical: A - Z</option>
                         <option value="Z">Alphabetical: Z - A</option>
                     </select>
@@ -90,12 +90,22 @@
                 </tr>
             </thead>
             <tbody>
+                {% for row in filter_data %}
                 <tr>
-                    <td>Apple Dress</td>
-                    <td>Equipment</td>
-                    <td><input type="checkbox" value="1" disabled checked></td>
-                    <td><input type="checkbox" value="Boat" disabled></td>
+                    <td>{{ row[0]['diyname'] }}</td>
+                    <td>{{ row[0]['diycategory'] }}</td>
+                    {% if row[0]['lindsay'] %}
+                    <td><input type="checkbox" checked disabled></td>
+                    {% else %}
+                    <td><input type="checkbox" disabled></td>
+                    {% endif %}
+                    {% if row[0]['lyrics'] %}
+                    <td><input type="checkbox" checked disabled></td>
+                    {% else %}
+                    <td><input type="checkbox" disabled></td>
+                    {% endif %}
                 </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>

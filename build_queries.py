@@ -4,8 +4,40 @@ from models import *
 from datetime import datetime
 
 
+def select_diys(data):
+    """Build the SELECT query for diys based on user filters."""
+    if data['filter_diys'] == "all":
+            query = select(Diy)
+    else:
+        query = select(Diy).where(Diy.diycategory == data['filter_diys'])
+
+    # View diys Lindsay has collected or not collected
+    if data['filter_collect'] == "lindsay":
+        query = query.where(Diy.lindsay == '1')
+    elif data['filter_collect'] == "not_lindsay":
+        query = query.where(Diy.lindsay == '0')
+
+    # View diys Lindsay has collected or not collected
+    elif data['filter_collect'] == "lyrics":
+        query = query.where(Diy.lyrics == '1')
+    elif data['filter_collect'] == "not_lyrics":
+        query = query.where(Diy.lyrics == '0')
+
+    # Sort by alphabet
+    if data['sort'] == 'A':
+        query = query.order_by(Diy.diyname.asc())
+    elif data['sort'] == 'Z':
+        query = query.order_by(Diy.diyname.desc())
+
+    return query
+
+def select_diy_name(data):
+    """Build the SELECT query for diys based on diy name."""
+    query = select(Diy).where(Diy.diyname == data['search_diys'])
+    return query
+
 def select_bugs(data):
-    '''Builds the SELECT query for bugs based on user filters.'''
+    """Build the SELECT query for bugs based on user filters."""
 
     if data['filter_bugs'] == "all":
             query = select(Bug)
@@ -100,7 +132,7 @@ def select_bugs(data):
 
 
 def select_fish(data):
-    '''Builds the SELECT query for fish based on user filters.'''
+    """Build the SELECT query for fish based on user filters."""
 
     if data['filter_fish'] == "all":
             query = select(Fish)
@@ -195,7 +227,7 @@ def select_fish(data):
 
 
 def select_sea_creatures(data):
-    '''Builds the SELECT query for sea creatures based on user filters.'''
+    """Build the SELECT query for sea creatures based on user filters."""
 
     if data['filter_sea_creatures'] == "all":
             query = select(Seacreature)

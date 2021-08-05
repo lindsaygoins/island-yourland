@@ -5,7 +5,6 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql.expression import select
 from flask_migrate import Migrate
 from models import *
-from copy import deepcopy
 import os
 
 app = Flask(__name__)
@@ -23,7 +22,24 @@ def about():
 
 @app.route('/diys', methods=['GET', 'POST'])
 def diys():
-    return render_template("diys.html")
+    if request.method == 'POST':
+
+        # Get filter parameters
+        data =  {
+            'filter_diys': request.form.get('filter_diys'),
+            'filter_collect': request.form.get('filter_collect'),
+            'sort': request.form.get('sort')
+        }
+
+        # Building the query
+        query = select_diys(data)
+
+        # Execute query
+        result = db.session.execute(query)
+
+        return render_template("diys.html", filter_data=result)
+    else:
+        return render_template("diys.html")
 
 @app.route('/add_diys', methods=['GET', 'POST'])
 def add_diys():
@@ -31,7 +47,22 @@ def add_diys():
 
 @app.route('/search_diys', methods=['GET', 'POST'])
 def search_diys():
-    return render_template("/search/search_diys.html")
+    if request.method == 'POST':
+
+        # Get search parameters
+        data =  {
+            'search_diys': request.form.get('search_diys'),
+        }
+
+        # Building the query
+        query = select_diy_name(data)
+
+        # Execute query
+        result = db.session.execute(query)
+
+        return render_template("/search/search_diys.html", search_data=result)
+    else:
+        return render_template("/search/search_diys.html")
 
 @app.route('/art', methods=['GET', 'POST'])
 def art():
@@ -83,24 +114,7 @@ def bugs():
         result = db.session.execute(query)
 
         # Save date & time results into readable format
-        rows = []
-        for row in result:
-            rows.append(deepcopy(row[0]))
-
-        for row in rows:
-            row.monthstart = convert_date(row.monthstart)
-            row.monthend = convert_date(row.monthend)
-
-            if row.altmonthstart:
-                row.altmonthstart = convert_date(row.altmonthstart)
-                row.altmonthend = convert_date(row.altmonthend)
-
-            row.hourstart = convert_time(row.hourstart)
-            row.hourend = convert_time(row.hourend)
-
-            if row.althourstart:
-                row.althourstart = convert_time(row.althourstart)
-                row.althourend = convert_time(row.althourend)
+        rows = convert_rows(result)
             
         return render_template("bugs.html", filter_data=rows)
     else:
@@ -128,24 +142,7 @@ def fish():
         result = db.session.execute(query)
 
         # Save date & time results into readable format
-        rows = []
-        for row in result:
-            rows.append(deepcopy(row[0]))
-
-        for row in rows:
-            row.monthstart = convert_date(row.monthstart)
-            row.monthend = convert_date(row.monthend)
-
-            if row.altmonthstart:
-                row.altmonthstart = convert_date(row.altmonthstart)
-                row.altmonthend = convert_date(row.altmonthend)
-
-            row.hourstart = convert_time(row.hourstart)
-            row.hourend = convert_time(row.hourend)
-
-            if row.althourstart:
-                row.althourstart = convert_time(row.althourstart)
-                row.althourend = convert_time(row.althourend)
+        rows = convert_rows(result)
             
         return render_template("fish.html", filter_data=rows)
     else:
@@ -173,24 +170,7 @@ def seacreatures():
         result = db.session.execute(query)
 
         # Save date & time results into readable format
-        rows = []
-        for row in result:
-            rows.append(deepcopy(row[0]))
-
-        for row in rows:
-            row.monthstart = convert_date(row.monthstart)
-            row.monthend = convert_date(row.monthend)
-
-            if row.altmonthstart:
-                row.altmonthstart = convert_date(row.altmonthstart)
-                row.altmonthend = convert_date(row.altmonthend)
-
-            row.hourstart = convert_time(row.hourstart)
-            row.hourend = convert_time(row.hourend)
-
-            if row.althourstart:
-                row.althourstart = convert_time(row.althourstart)
-                row.althourend = convert_time(row.althourend)
+        rows = convert_rows(result)
             
         return render_template("seacreatures.html", filter_data=rows)
     else:
