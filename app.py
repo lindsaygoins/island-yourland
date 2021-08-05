@@ -112,7 +112,44 @@ def add_bugs():
 
 @app.route('/fish', methods=['GET', 'POST'])
 def fish():
-    return render_template("fish.html")
+    if request.method == 'POST':
+
+        # Get filter parameters
+        data =  {
+            'filter_fish': request.form.get('filter_fish'),
+            'filter_collect': request.form.get('filter_collect'),
+            'sort': request.form.get('sort')
+        }
+
+        # Building the query
+        query = select_fish(data)
+
+        # Execute query
+        result = db.session.execute(query)
+
+        # Save date & time results into readable format
+        rows = []
+        for row in result:
+            rows.append(deepcopy(row[0]))
+
+        for row in rows:
+            row.monthstart = convert_date(row.monthstart)
+            row.monthend = convert_date(row.monthend)
+
+            if row.altmonthstart:
+                row.altmonthstart = convert_date(row.altmonthstart)
+                row.altmonthend = convert_date(row.altmonthend)
+
+            row.hourstart = convert_time(row.hourstart)
+            row.hourend = convert_time(row.hourend)
+
+            if row.althourstart:
+                row.althourstart = convert_time(row.althourstart)
+                row.althourend = convert_time(row.althourend)
+            
+        return render_template("fish.html", filter_data=rows)
+    else:
+        return render_template("fish.html")
 
 @app.route('/add_fish', methods=['GET', 'POST'])
 def add_fish():
