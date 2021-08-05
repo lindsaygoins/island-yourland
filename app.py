@@ -1,9 +1,17 @@
-from flask import Flask, render_template
+from utils import *
+from build_queries import *
+from flask import Flask, render_template, request
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.sql.expression import select
+from flask_migrate import Migrate
+from models import *
+from copy import deepcopy
 import os
 
-
 app = Flask(__name__)
-
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('URI')
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
 @app.route('/')
 def root():
@@ -59,7 +67,44 @@ def add_flowers():
 
 @app.route('/bugs', methods=['GET', 'POST'])
 def bugs():
-    return render_template("bugs.html")
+    if request.method == 'POST':
+
+        # Get filter parameters
+        data =  {
+            'filter_bugs': request.form.get('filter_bugs'),
+            'filter_collect': request.form.get('filter_collect'),
+            'sort': request.form.get('sort')
+        }
+
+        # Building the query
+        query = select_bugs(data)
+
+        # Execute query
+        result = db.session.execute(query)
+
+        # Save date & time results into readable format
+        rows = []
+        for row in result:
+            rows.append(deepcopy(row[0]))
+
+        for row in rows:
+            row.monthstart = convert_date(row.monthstart)
+            row.monthend = convert_date(row.monthend)
+
+            if row.altmonthstart:
+                row.altmonthstart = convert_date(row.altmonthstart)
+                row.altmonthend = convert_date(row.altmonthend)
+
+            row.hourstart = convert_time(row.hourstart)
+            row.hourend = convert_time(row.hourend)
+
+            if row.althourstart:
+                row.althourstart = convert_time(row.althourstart)
+                row.althourend = convert_time(row.althourend)
+            
+        return render_template("bugs.html", filter_data=rows)
+    else:
+        return render_template("bugs.html")
 
 @app.route('/add_bugs', methods=['GET', 'POST'])
 def add_bugs():
@@ -81,6 +126,13 @@ def seacreatures():
 def add_seacreatures():
     return render_template("/add/add_seacreatures.html")
 
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template("/error/404.html"), 404
+
+@app.errorhandler(500)
+def internal_server_error(e):
+    return render_template("/error/500.html"), 500
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 9112))     

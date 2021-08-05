@@ -28,14 +28,14 @@
             <div class="row">
 
                 <div class="col-3">
-                    <select class="form-select" aria-label="Default select example">
+                    <select class="form-select" aria-label="Default select example" name="filter_bugs">
                         <option selected value="all">All Bugs</option>
                         <option value="catch">Currently Catchable</option>
                     </select>
                 </div>
 
                 <div class="col-3">
-                    <select class="form-select" aria-label="Default select example">
+                    <select class="form-select" aria-label="Default select example" name="filter_collect">
                         <option selected value="all">View All</option>
                         <option value="lindsay">Lindsay</option>
                         <option value="not_lindsay">Uncollected Lindsay</option>
@@ -43,8 +43,9 @@
                 </div>
 
                 <div class="col-3">
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected value="A">Alphabetical: A - Z</option>
+                    <select class="form-select" aria-label="Default select example" name="sort">
+                        <option selected value="id">ID</option>
+                        <option value="A">Alphabetical: A - Z</option>
                         <option value="Z">Alphabetical: Z - A</option>
                     </select>
                 </div>
@@ -68,14 +69,28 @@
                 </tr>
             </thead>
             <tbody>
+                {% for row in filter_data %}
                 <tr>
-                    <td>Tiger Butterfly</td>
-                    <td>500</td>
-                    <td>Flying</td>
-                    <td>October - July</td>
-                    <td>All Day</td>
-                    <td><input type="checkbox" value="1" disabled></td>
+                    <td>{{ row['bugname'] }}</td>
+                    <td>{{ row['sellprice'] }}</td>
+                    <td>{{ row['location']}}</td>
+                    <td>{{ row['monthstart']}} - {{ row['monthend']}} 
+                        {% if row['altmonthstart'] %}
+                        and {{ row['altmonthstart']}} - {{ row['altmonthend']}}
+                        {% endif %}
+                    </td>
+                    <td>{{ row['hourstart']}} - {{ row['hourend']}}
+                        {% if row['althourstart'] %}
+                        and {{ row['althourstart']}} - {{ row['althourend']}}
+                        {% endif %}
+                    </td>
+                    {% if row['lindsay'] %}
+                    <td><input type="checkbox" checked disabled></td>
+                    {% else %}
+                    <td><input type="checkbox" disabled></td>
+                    {% endif %}
                 </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>
