@@ -100,6 +100,27 @@ def select_item_name(data):
     query = select(Saharahitem).where(Saharahitem.itemname == data['search_items'])
     return query
 
+def select_flowers(data):
+    """Build the SELECT query for flowers based on user filters."""
+    if data['filter_flowers'] == "all":
+            query = select(Flower)
+    else:
+        query = select(Flower).where(Flower.flowerfamily == data['filter_flowers'])
+
+    # View flowers Lindsay has collected or not collected
+    if data['filter_collect'] == "lindsay":
+        query = query.where(Flower.lindsay == '1')
+    elif data['filter_collect'] == "not_lindsay":
+        query = query.where(Flower.lindsay == '0')
+
+    # Sort by alphabet
+    if data['sort'] == 'A':
+        query = query.order_by(Flower.flowername.asc())
+    elif data['sort'] == 'Z':
+        query = query.order_by(Flower.flowername.desc())
+
+    return query
+
 def select_bugs(data):
     """Build the SELECT query for bugs based on user filters."""
 

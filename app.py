@@ -154,7 +154,24 @@ def search_items():
 
 @app.route('/flowers', methods=['GET', 'POST'])
 def flowers():
-    return render_template("flowers.html")
+    if request.method == 'POST':
+
+        # Get filter parameters
+        data =  {
+            'filter_flowers': request.form.get('filter_flowers'),
+            'filter_collect': request.form.get('filter_collect'),
+            'sort': request.form.get('sort')
+        }
+
+        # Building the query
+        query = select_flowers(data)
+
+        # Execute query
+        result = db.session.execute(query)
+        
+        return render_template("flowers.html", filter_data=result)
+    else:
+        return render_template("flowers.html")
 
 @app.route('/add_flowers', methods=['GET', 'POST'])
 def add_flowers():
