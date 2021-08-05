@@ -66,7 +66,24 @@ def search_diys():
 
 @app.route('/art', methods=['GET', 'POST'])
 def art():
-    return render_template("art.html")
+    if request.method == 'POST':
+
+        # Get filter parameters
+        data =  {
+            'filter_art': request.form.get('filter_art'),
+            'filter_collect': request.form.get('filter_collect'),
+            'sort': request.form.get('sort')
+        }
+
+        # Building the query
+        query = select_art(data)
+
+        # Execute query
+        result = db.session.execute(query)
+        
+        return render_template("art.html", filter_data=result)
+    else:
+        return render_template("art.html")
 
 @app.route('/add_art', methods=['GET', 'POST'])
 def add_art():
@@ -74,7 +91,22 @@ def add_art():
 
 @app.route('/search_art', methods=['GET', 'POST'])
 def search_art():
-    return render_template("/search/search_art.html")
+    if request.method == 'POST':
+
+        # Get search parameters
+        data =  {
+            'search_art': request.form.get('search_art'),
+        }
+
+        # Building the query
+        query = select_art_name(data)
+
+        # Execute query
+        result = db.session.execute(query)
+
+        return render_template("/search/search_art.html", search_data=result)
+    else:
+        return render_template("/search/search_art.html")
 
 @app.route('/items', methods=['GET', 'POST'])
 def items():

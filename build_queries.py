@@ -17,7 +17,7 @@ def select_diys(data):
     elif data['filter_collect'] == "not_lindsay":
         query = query.where(Diy.lindsay == '0')
 
-    # View diys Lindsay has collected or not collected
+    # View diys Lyrics has collected or not collected
     elif data['filter_collect'] == "lyrics":
         query = query.where(Diy.lyrics == '1')
     elif data['filter_collect'] == "not_lyrics":
@@ -34,6 +34,38 @@ def select_diys(data):
 def select_diy_name(data):
     """Build the SELECT query for diys based on diy name."""
     query = select(Diy).where(Diy.diyname == data['search_diys'])
+    return query
+
+def select_art(data):
+    """Build the SELECT query for art based on user filters."""
+    if data['filter_art'] == "all":
+            query = select(Art)
+    else:
+        query = select(Art).where(Art.arttype == data['filter_art'])
+
+    # View art Lindsay has collected or not collected
+    if data['filter_collect'] == "lindsay":
+        query = query.where(Art.lindsay == '1')
+    elif data['filter_collect'] == "not_lindsay":
+        query = query.where(Art.lindsay == '0')
+
+    # View art Lyrics has collected or not collected
+    elif data['filter_collect'] == "lyrics":
+        query = query.where(Art.lyrics == '1')
+    elif data['filter_collect'] == "not_lyrics":
+        query = query.where(Art.lyrics == '0')
+
+    # Sort by alphabet
+    if data['sort'] == 'A':
+        query = query.order_by(Art.artname.asc())
+    elif data['sort'] == 'Z':
+        query = query.order_by(Art.artname.desc())
+
+    return query
+
+def select_art_name(data):
+    """Build the SELECT query for art based on art name."""
+    query = select(Art).where(Art.artname == data['search_art'])
     return query
 
 def select_bugs(data):
