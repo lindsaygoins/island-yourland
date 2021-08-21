@@ -1,5 +1,5 @@
 from operator import and_, or_
-from sqlalchemy.sql.expression import select, or_
+from sqlalchemy.sql.expression import select, or_, update
 from models import *
 from datetime import datetime
 
@@ -33,7 +33,15 @@ def select_diys(data):
 
 def select_diy_name(data):
     """Build the SELECT query for diys based on diy name."""
-    query = select(Diy).where(Diy.diyname == data['search_diys'])
+    query = select(Diy).where(Diy.diyname == data['diy_name'])
+    return query
+
+def update_diy(data):
+    """Build the UPDATE query for diys based on user input."""
+    if data['diy_user'] == "lindsay":
+        query = update(Diy).where(Diy.diyid == data['diy_id']).values(lindsay=True)
+    else:
+        query = update(Diy).where(Diy.diyid == data['diy_id']).values(lyrics='1')
     return query
 
 def select_art(data):

@@ -1,6 +1,6 @@
 from utils import *
 from build_queries import *
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql.expression import select
 from flask_migrate import Migrate
@@ -43,7 +43,31 @@ def diys():
 
 @app.route('/add_diys', methods=['GET', 'POST'])
 def add_diys():
-    return render_template("/add/add_diy.html")
+    if request.method == 'POST':
+
+        # Get update parameters
+        data =  {
+            'diy_name': request.form.get('diy_name'),
+            'diy_user': request.form.get('diy_user')
+        }
+
+        # Build & execute the query to check if DIY exists
+        query = select_diy_name(data)
+        result = db.session.execute(query)
+        row = result.first()
+
+        # If DIY exists, build & execute the UPDATE query
+        if not row:
+            print("Not in db")
+        else:
+            data['diy_id'] = row[0].diyid
+            query = update_diy(data)
+            db.session.execute(query)
+            db.session.commit()
+
+        return redirect(url_for('diys'))
+    else:
+        return render_template("/add/add_diy.html")
 
 @app.route('/search_diys', methods=['GET', 'POST'])
 def search_diys():
@@ -51,7 +75,7 @@ def search_diys():
 
         # Get search parameters
         data =  {
-            'search_diys': request.form.get('search_diys'),
+            'diy_name': request.form.get('search_diys'),
         }
 
         # Building the query
