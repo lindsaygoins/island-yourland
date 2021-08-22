@@ -113,7 +113,15 @@ def select_items(data):
 
 def select_item_name(data):
     """Build the SELECT query for Saharah's items based on item name."""
-    query = select(Saharahitem).where(Saharahitem.itemname == data['search_items'])
+    query = select(Saharahitem).where(Saharahitem.itemname == data['item_name'])
+    return query
+
+def update_item(data):
+    """Build the UPDATE query for Saharah's items based on user input."""
+    if data['item_user'] == "lindsay":
+        query = update(Saharahitem).where(Saharahitem.itemid == data['item_id']).values(lindsay=True)
+    else:
+        query = update(Saharahitem).where(Saharahitem.itemid == data['item_id']).values(lyrics=True)
     return query
 
 def select_flowers(data):

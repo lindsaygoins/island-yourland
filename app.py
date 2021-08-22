@@ -181,7 +181,32 @@ def items():
 
 @app.route('/add_items', methods=['GET', 'POST'])
 def add_items():
-    return render_template("/add/add_items.html")
+    if request.method == 'POST':
+
+        # Get update parameters
+        data =  {
+            'item_name': request.form.get('item_name'),
+            'item_user': request.form.get('item_user')
+        }
+
+        # Build & execute the query to check if item exists
+        query = select_item_name(data)
+        result = db.session.execute(query)
+        row = result.first()
+
+        # If item exists, build & execute the UPDATE query
+        if not row:
+            # Add error message here!
+            print("Not in db")
+        else:
+            data['item_id'] = row[0].itemid
+            query = update_item(data)
+            db.session.execute(query)
+            db.session.commit()
+
+        return redirect(url_for('items'))
+    else:
+        return render_template("/add/add_items.html")
 
 @app.route('/search_items', methods=['GET', 'POST'])
 def search_items():
@@ -189,7 +214,7 @@ def search_items():
 
         # Get search parameters
         data =  {
-            'search_items': request.form.get('search_items'),
+            'item_name': request.form.get('search_items'),
         }
 
         # Building the query
