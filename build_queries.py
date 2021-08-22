@@ -41,7 +41,7 @@ def update_diy(data):
     if data['diy_user'] == "lindsay":
         query = update(Diy).where(Diy.diyid == data['diy_id']).values(lindsay=True)
     else:
-        query = update(Diy).where(Diy.diyid == data['diy_id']).values(lyrics='1')
+        query = update(Diy).where(Diy.diyid == data['diy_id']).values(lyrics=True)
     return query
 
 def select_art(data):
@@ -73,7 +73,15 @@ def select_art(data):
 
 def select_art_name(data):
     """Build the SELECT query for art based on art name."""
-    query = select(Art).where(Art.artname == data['search_art'])
+    query = select(Art).where(Art.artname == data['art_name'])
+    return query
+
+def update_art(data):
+    """Build the UPDATE query for art based on user input."""
+    if data['art_user'] == "lindsay":
+        query = update(Art).where(Art.artid == data['art_id']).values(lindsay=True)
+    else:
+        query = update(Art).where(Art.artid == data['art_id']).values(lyrics=True)
     return query
 
 def select_items(data):

@@ -58,6 +58,7 @@ def add_diys():
 
         # If DIY exists, build & execute the UPDATE query
         if not row:
+            # Add error message here!
             print("Not in db")
         else:
             data['diy_id'] = row[0].diyid
@@ -111,7 +112,32 @@ def art():
 
 @app.route('/add_art', methods=['GET', 'POST'])
 def add_art():
-    return render_template("/add/add_art.html")
+    if request.method == 'POST':
+
+        # Get update parameters
+        data =  {
+            'art_name': request.form.get('art_name'),
+            'art_user': request.form.get('art_user')
+        }
+
+        # Build & execute the query to check if Artwork exists
+        query = select_art_name(data)
+        result = db.session.execute(query)
+        row = result.first()
+
+        # If Artwork exists, build & execute the UPDATE query
+        if not row:
+            # Add error message here!
+            print("Not in db")
+        else:
+            data['art_id'] = row[0].artid
+            query = update_art(data)
+            db.session.execute(query)
+            db.session.commit()
+
+        return redirect(url_for('art'))
+    else:
+        return render_template("/add/add_art.html")
 
 @app.route('/search_art', methods=['GET', 'POST'])
 def search_art():
@@ -119,7 +145,7 @@ def search_art():
 
         # Get search parameters
         data =  {
-            'search_art': request.form.get('search_art'),
+            'art_name': request.form.get('search_art'),
         }
 
         # Building the query
