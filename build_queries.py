@@ -147,7 +147,6 @@ def select_flowers(data):
 
 def select_bugs(data):
     """Build the SELECT query for bugs based on user filters."""
-
     if data['filter_bugs'] == "all":
             query = select(Bug)
     else:
@@ -240,9 +239,14 @@ def select_bugs(data):
     return query
 
 
+def update_bug(data):
+    """Build the UPDATE query for Bugs based on user input."""
+    query = update(Bug).where(Bug.bugname == data['bug_name']).values(lindsay=True)
+    return query
+
+
 def select_fish(data):
     """Build the SELECT query for fish based on user filters."""
-
     if data['filter_fish'] == "all":
             query = select(Fish)
     else:
@@ -337,7 +341,6 @@ def select_fish(data):
 
 def select_sea_creatures(data):
     """Build the SELECT query for sea creatures based on user filters."""
-
     if data['filter_sea_creatures'] == "all":
             query = select(Seacreature)
     else:

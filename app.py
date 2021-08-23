@@ -278,7 +278,21 @@ def bugs():
 
 @app.route('/add_bugs', methods=['GET', 'POST'])
 def add_bugs():
-    return render_template("/add/add_bugs.html")
+    if request.method == 'POST':
+
+        # Get update parameters
+        data =  {
+            'bug_name': request.form.get('bug_name'),
+        }
+
+        # Build & execute query
+        query = update_bug(data)
+        db.session.execute(query)
+        db.session.commit()
+
+        return redirect(url_for('bugs'))
+    else:
+        return render_template("/add/add_bugs.html")
 
 @app.route('/fish', methods=['GET', 'POST'])
 def fish():
