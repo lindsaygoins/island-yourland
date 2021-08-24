@@ -339,6 +339,12 @@ def select_fish(data):
     return query
 
 
+def update_fish(data):
+    """Build the UPDATE query for Fish based on user input."""
+    query = update(Fish).where(Fish.fishname == data['fish_name']).values(lindsay=True)
+    return query
+
+
 def select_sea_creatures(data):
     """Build the SELECT query for sea creatures based on user filters."""
     if data['filter_sea_creatures'] == "all":

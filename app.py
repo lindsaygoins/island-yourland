@@ -291,8 +291,6 @@ def add_bugs():
         db.session.commit()
 
         return redirect(url_for('bugs'))
-    else:
-        return render_template("/add/add_bugs.html")
 
 @app.route('/fish', methods=['GET', 'POST'])
 def fish():
@@ -320,7 +318,19 @@ def fish():
 
 @app.route('/add_fish', methods=['GET', 'POST'])
 def add_fish():
-    return render_template("/add/add_fish.html")
+    if request.method == 'POST':
+
+        # Get update parameters
+        data =  {
+            'fish_name': request.form.get('fish_name'),
+        }
+
+        # Build & execute query
+        query = update_fish(data)
+        db.session.execute(query)
+        db.session.commit()
+
+        return redirect(url_for('fish'))
 
 @app.route('/seacreatures', methods=['GET', 'POST'])
 def seacreatures():
