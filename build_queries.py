@@ -145,6 +145,11 @@ def select_flowers(data):
 
     return query
 
+def update_flowers(data):
+    """Build the UPDATE query for flowers based on user input."""
+    query = update(Flower).where(Flower.flowername == data['bug_name']).values(lindsay=True)
+    return query
+
 def select_bugs(data):
     """Build the SELECT query for bugs based on user filters."""
     if data['filter_bugs'] == "all":
@@ -238,12 +243,10 @@ def select_bugs(data):
 
     return query
 
-
 def update_bug(data):
-    """Build the UPDATE query for Bugs based on user input."""
+    """Build the UPDATE query for bugs based on user input."""
     query = update(Bug).where(Bug.bugname == data['bug_name']).values(lindsay=True)
     return query
-
 
 def select_fish(data):
     """Build the SELECT query for fish based on user filters."""
@@ -338,12 +341,10 @@ def select_fish(data):
 
     return query
 
-
 def update_fish(data):
-    """Build the UPDATE query for Fish based on user input."""
+    """Build the UPDATE query for fish based on user input."""
     query = update(Fish).where(Fish.fishname == data['fish_name']).values(lindsay=True)
     return query
-
 
 def select_sea_creatures(data):
     """Build the SELECT query for sea creatures based on user filters."""
@@ -436,4 +437,9 @@ def select_sea_creatures(data):
     else:
         query = query.order_by(Seacreature.seacreatureid.asc())
 
+    return query
+
+def update_sea_creatures(data):
+    """Build the UPDATE query for sea creatures based on user input."""
+    query = update(Seacreature).where(Seacreature.seacreaturename == data['sea_creature_name']).values(lindsay=True)
     return query

@@ -250,7 +250,19 @@ def flowers():
 
 @app.route('/add_flowers', methods=['GET', 'POST'])
 def add_flowers():
-    return render_template("/add/add_flowers.html")
+    if request.method == 'POST':
+
+        # Get update parameters
+        data =  {
+            'flower_name': request.form.get('flower_name'),
+        }
+
+        # Build & execute query
+        query = update_flowers(data)
+        db.session.execute(query)
+        db.session.commit()
+
+        return redirect(url_for('flowers'))
 
 @app.route('/bugs', methods=['GET', 'POST'])
 def bugs():
@@ -358,7 +370,19 @@ def seacreatures():
 
 @app.route('/add_seacreatures', methods=['GET', 'POST'])
 def add_seacreatures():
-    return render_template("/add/add_seacreatures.html")
+    if request.method == 'POST':
+
+        # Get update parameters
+        data =  {
+            'sea_creature_name': request.form.get('sea_creature_name'),
+        }
+
+        # Build & execute query
+        query = update_sea_creatures(data)
+        db.session.execute(query)
+        db.session.commit()
+
+        return redirect(url_for('seacreatures'))
 
 @app.errorhandler(404)
 def page_not_found(e):
