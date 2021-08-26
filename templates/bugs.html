@@ -74,16 +74,24 @@
                     <td>{{ row['bugname'] }}</td>
                     <td>{{ row['sellprice'] }}</td>
                     <td>{{ row['location']}}</td>
+                    {% if row['monthend'] %}
                     <td>{{ row['monthstart']}} - {{ row['monthend']}} 
                         {% if row['altmonthstart'] %}
                         and {{ row['altmonthstart']}} - {{ row['altmonthend']}}
                         {% endif %}
                     </td>
+                    {% else %}
+                    <td>All Year</td>
+                    {% endif %}
+                    {% if row['hourend'] %}
                     <td>{{ row['hourstart']}} - {{ row['hourend']}}
                         {% if row['althourstart'] %}
                         and {{ row['althourstart']}} - {{ row['althourend']}}
                         {% endif %}
                     </td>
+                    {% else %}
+                    <td>All Day</td>
+                    {% endif %}
                     {% if row['lindsay'] %}
                     <td><input type="checkbox" checked disabled></td>
                     {% else %}

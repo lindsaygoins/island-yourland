@@ -48,17 +48,29 @@ def convert_rows(result):
         rows.append(deepcopy(row[0]))
 
     for row in rows:
-        row.monthstart = convert_date(row.monthstart)
-        row.monthend = convert_date(row.monthend)
+
+        if row.monthstart == row.monthend:
+            row.monthstart = "All Year"
+            row.monthend = None
+        
+        else:
+            row.monthstart = convert_date(row.monthstart)
+            row.monthend = convert_date(row.monthend)
 
         if row.altmonthstart:
             row.altmonthstart = convert_date(row.altmonthstart)
             row.altmonthend = convert_date(row.altmonthend)
 
-        row.hourstart = convert_time(row.hourstart)
-        row.hourend = convert_time(row.hourend)
+        if row.hourstart == row.hourend:
+            row.hourstart = "All Day"
+            row.hourend = None
+
+        else:
+            row.hourstart = convert_time(row.hourstart)
+            row.hourend = convert_time(row.hourend)
 
         if row.althourstart:
             row.althourstart = convert_time(row.althourstart)
             row.althourend = convert_time(row.althourend)
+            
     return rows
