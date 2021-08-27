@@ -23,7 +23,6 @@ def about():
 @app.route('/diys', methods=['GET', 'POST'])
 def diys():
     if request.method == 'POST':
-
         # Get filter parameters
         data =  {
             'filter_diys': request.form.get('filter_diys'),
@@ -38,13 +37,26 @@ def diys():
         result = db.session.execute(query)
 
         return render_template("diys.html", filter_data=result)
+    
     else:
-        return render_template("diys.html")
+        # Set filter parameters
+        data =  {
+            'filter_diys': 'all',
+            'filter_collect': 'all',
+            'sort': 'A'
+        }
+
+        # Building the query
+        query = select_diys(data)
+
+        # Execute query
+        result = db.session.execute(query)
+
+        return render_template("diys.html", filter_data=result)
 
 @app.route('/add_diys', methods=['GET', 'POST'])
 def add_diys():
     if request.method == 'POST':
-
         # Get update parameters
         data =  {
             'diy_name': request.form.get('diy_name'),
@@ -67,13 +79,13 @@ def add_diys():
             db.session.commit()
 
         return redirect(url_for('diys'))
+    
     else:
         return render_template("/add/add_diy.html")
 
 @app.route('/search_diys', methods=['GET', 'POST'])
 def search_diys():
     if request.method == 'POST':
-
         # Get search parameters
         data =  {
             'diy_name': request.form.get('search_diys'),
@@ -86,13 +98,13 @@ def search_diys():
         result = db.session.execute(query)
 
         return render_template("/search/search_diys.html", search_data=result)
+    
     else:
         return render_template("/search/search_diys.html")
 
 @app.route('/art', methods=['GET', 'POST'])
 def art():
     if request.method == 'POST':
-
         # Get filter parameters
         data =  {
             'filter_art': request.form.get('filter_art'),
@@ -107,13 +119,26 @@ def art():
         result = db.session.execute(query)
         
         return render_template("art.html", filter_data=result)
+    
     else:
-        return render_template("art.html")
+        # Set filter parameters
+        data =  {
+            'filter_art': 'all',
+            'filter_collect': 'all',
+            'sort': 'A'
+        }
+
+        # Building the query
+        query = select_art(data)
+
+        # Execute query
+        result = db.session.execute(query)
+        
+        return render_template("art.html", filter_data=result)
 
 @app.route('/add_art', methods=['GET', 'POST'])
 def add_art():
     if request.method == 'POST':
-
         # Get update parameters
         data =  {
             'art_name': request.form.get('art_name'),
@@ -136,13 +161,13 @@ def add_art():
             db.session.commit()
 
         return redirect(url_for('art'))
+    
     else:
         return render_template("/add/add_art.html")
 
 @app.route('/search_art', methods=['GET', 'POST'])
 def search_art():
     if request.method == 'POST':
-
         # Get search parameters
         data =  {
             'art_name': request.form.get('search_art'),
@@ -155,13 +180,13 @@ def search_art():
         result = db.session.execute(query)
 
         return render_template("/search/search_art.html", search_data=result)
+    
     else:
         return render_template("/search/search_art.html")
 
 @app.route('/items', methods=['GET', 'POST'])
 def items():
     if request.method == 'POST':
-
         # Get filter parameters
         data =  {
             'filter_items': request.form.get('filter_items'),
@@ -176,13 +201,26 @@ def items():
         result = db.session.execute(query)
         
         return render_template("items.html", filter_data=result)
+    
     else:
-        return render_template("items.html")
+        # Set filter parameters
+        data =  {
+            'filter_items': 'all',
+            'filter_collect': 'all',
+            'sort': 'A'
+        }
+
+        # Building the query
+        query = select_items(data)
+
+        # Execute query
+        result = db.session.execute(query)
+            
+        return render_template("items.html", filter_data=result)
 
 @app.route('/add_items', methods=['GET', 'POST'])
 def add_items():
     if request.method == 'POST':
-
         # Get update parameters
         data =  {
             'item_name': request.form.get('item_name'),
@@ -205,13 +243,13 @@ def add_items():
             db.session.commit()
 
         return redirect(url_for('items'))
+    
     else:
         return render_template("/add/add_items.html")
 
 @app.route('/search_items', methods=['GET', 'POST'])
 def search_items():
     if request.method == 'POST':
-
         # Get search parameters
         data =  {
             'item_name': request.form.get('search_items'),
@@ -224,13 +262,13 @@ def search_items():
         result = db.session.execute(query)
 
         return render_template("/search/search_items.html", search_data=result)
+    
     else:
         return render_template("/search/search_items.html")
 
 @app.route('/flowers', methods=['GET', 'POST'])
 def flowers():
     if request.method == 'POST':
-
         # Get filter parameters
         data =  {
             'filter_flowers': request.form.get('filter_flowers'),
@@ -245,13 +283,26 @@ def flowers():
         result = db.session.execute(query)
         
         return render_template("flowers.html", filter_data=result)
+    
     else:
-        return render_template("flowers.html")
+        # Set filter parameters
+        data =  {
+            'filter_flowers': 'all',
+            'filter_collect': 'all',
+            'sort': 'A'
+        }
+
+        # Building the query
+        query = select_flowers(data)
+
+        # Execute query
+        result = db.session.execute(query)
+            
+        return render_template("flowers.html", filter_data=result)
 
 @app.route('/add_flowers', methods=['GET', 'POST'])
 def add_flowers():
     if request.method == 'POST':
-
         # Get update parameters
         data =  {
             'flower_name': request.form.get('flower_name'),
@@ -267,7 +318,6 @@ def add_flowers():
 @app.route('/bugs', methods=['GET', 'POST'])
 def bugs():
     if request.method == 'POST':
-
         # Get filter parameters
         data =  {
             'filter_bugs': request.form.get('filter_bugs'),
@@ -285,13 +335,29 @@ def bugs():
         rows = convert_rows(result)
             
         return render_template("bugs.html", filter_data=rows)
+    
     else:
-        return render_template("bugs.html")
+        # Set filter parameters
+        data =  {
+            'filter_bugs': 'all',
+            'filter_collect': 'all',
+            'sort': 'id'
+        }
+
+        # Building the query
+        query = select_bugs(data)
+
+        # Execute query
+        result = db.session.execute(query)
+
+        # Save date & time results into readable format
+        rows = convert_rows(result)
+            
+        return render_template("bugs.html", filter_data=rows)
 
 @app.route('/add_bugs', methods=['GET', 'POST'])
 def add_bugs():
     if request.method == 'POST':
-
         # Get update parameters
         data =  {
             'bug_name': request.form.get('bug_name'),
@@ -307,7 +373,6 @@ def add_bugs():
 @app.route('/fish', methods=['GET', 'POST'])
 def fish():
     if request.method == 'POST':
-
         # Get filter parameters
         data =  {
             'filter_fish': request.form.get('filter_fish'),
@@ -325,13 +390,29 @@ def fish():
         rows = convert_rows(result)
             
         return render_template("fish.html", filter_data=rows)
+    
     else:
-        return render_template("fish.html")
+        # Set filter parameters
+        data =  {
+            'filter_fish': 'all',
+            'filter_collect': 'all',
+            'sort': 'id'
+        }
+
+        # Building the query
+        query = select_fish(data)
+
+        # Execute query
+        result = db.session.execute(query)
+
+        # Save date & time results into readable format
+        rows = convert_rows(result)
+            
+        return render_template("fish.html", filter_data=rows)
 
 @app.route('/add_fish', methods=['GET', 'POST'])
 def add_fish():
     if request.method == 'POST':
-
         # Get update parameters
         data =  {
             'fish_name': request.form.get('fish_name'),
@@ -347,7 +428,6 @@ def add_fish():
 @app.route('/seacreatures', methods=['GET', 'POST'])
 def seacreatures():
     if request.method == 'POST':
-
         # Get filter parameters
         data =  {
             'filter_sea_creatures': request.form.get('filter_sea_creatures'),
@@ -365,13 +445,29 @@ def seacreatures():
         rows = convert_rows(result)
             
         return render_template("seacreatures.html", filter_data=rows)
+    
     else:
-        return render_template("seacreatures.html")
+        # Set filter parameters
+        data =  {
+            'filter_sea_creatures': 'all',
+            'filter_collect': 'all',
+            'sort': 'id'
+        }
+
+        # Building the query
+        query = select_sea_creatures(data)
+
+        # Execute query
+        result = db.session.execute(query)
+
+        # Save date & time results into readable format
+        rows = convert_rows(result)
+            
+        return render_template("seacreatures.html", filter_data=rows)
 
 @app.route('/add_seacreatures', methods=['GET', 'POST'])
 def add_seacreatures():
     if request.method == 'POST':
-
         # Get update parameters
         data =  {
             'sea_creature_name': request.form.get('sea_creature_name'),
