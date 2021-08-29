@@ -24,17 +24,9 @@ body {
 
 .main-content {
     background: #D1FCCE;
-    margin-top: 60px;
-    margin-bottom: 60px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    padding-left: 20px;
-    padding-right: 20px;
+    margin-top: 4%;
+    margin-bottom: 4%;
     min-height: 100px;
-}
-
-.island_pics {
-    margin-bottom: 20px;
 }
 
 .about_pics { 
@@ -45,19 +37,15 @@ body {
     display: inline-block;
 }
 
-.lg_pic {
-    margin-bottom: 20px;
-}
-
 .display-6 {
-    margin-bottom: 20px;
+    margin-bottom: 3%;
 }
 
 .about_heading {
-    margin-top: 25px;
-    margin-bottom: 5px;
+    margin-top: 3%;
+    margin-bottom: 1%;
 }
 
 #about_me {
-    margin-bottom: 5px;
+    margin-bottom: 1%;
 }
