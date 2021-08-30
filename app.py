@@ -1,5 +1,5 @@
-from utils import *
-from build_queries import *
+from scripts.utils import *
+from scripts.build_queries import *
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql.expression import select
