@@ -2,18 +2,18 @@
 
 {% block body %}
 
-    <div class="container-lg main-content">
+    <div class="container-sm p-4 main-content">
         <h6 class="display-6">Add Sea Creature by Name</h6>
         <form action="{{ url_for('add_seacreatures') }}" method="POST">
             <div class="row">
 
-                <div class="mb-3 col-6">
+                <div class="mb-3 col-md-6">
                     <input type="text" class="form-control" id="sea_creature_name" name="sea_creature_name" placeholder="Sea Creature Name" required>
                 </div>
 
                 <input type="hidden" id="sea_creature_user" name="sea_creature_user" value="lindsay">
 
-                <div class="mb-3 col-2">
+                <div class="mb-3 col-md-2">
                     <button type="submit" class="btn btn-primary">Add Sea Creature</button>
                 </div>
 
@@ -27,14 +27,14 @@
         <form action="{{ url_for('seacreatures') }}" method="POST">
             <div class="row">
 
-                <div class="col-3">
+                <div class="col-md-3 mb-3">
                     <select class="form-select" aria-label="Default select example" name="filter_sea_creatures">
                         <option selected value="all">All Sea Creatures</option>
                         <option value="catch">Currently Catchable</option>
                     </select>
                 </div>
 
-                <div class="col-3">
+                <div class="col-md-3 mb-3">
                     <select class="form-select" aria-label="Default select example" name="filter_collect">
                         <option selected value="all">View All</option>
                         <option value="lindsay">Lindsay</option>
@@ -42,7 +42,7 @@
                     </select>
                 </div>
 
-                <div class="col-3">
+                <div class="col-md-3 mb-3">
                     <select class="form-select" aria-label="Default select example" name="sort">
                         <option selected value="id">ID</option>
                         <option value="A">Alphabetical: A - Z</option>
@@ -50,7 +50,7 @@
                     </select>
                 </div>
 
-                <div class="mb-3 col-2">
+                <div class="mb-3 col-md-2">
                     <button type="submit" class="btn btn-primary">Filter</button>
                 </div>
                 
