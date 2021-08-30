@@ -73,34 +73,36 @@
             </div>
         </form>
 
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">Artwork Name</th>
-                    <th scope="col">Artwork Type</th>
-                    <th scope="col">Lindsay</th>
-                    <th scope="col">Lyrics</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for row in filter_data %}
-                <tr>
-                    <td>{{ row[0]['artname'] }}</td>
-                    <td>{{ row[0]['arttype'] }}</td>
-                    {% if row[0]['lindsay'] %}
-                    <td><input type="checkbox" checked disabled></td>
-                    {% else %}
-                    <td><input type="checkbox" disabled></td>
-                    {% endif %}
-                    {% if row[0]['lyrics'] %}
-                    <td><input type="checkbox" checked disabled></td>
-                    {% else %}
-                    <td><input type="checkbox" disabled></td>
-                    {% endif %}
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Artwork Name</th>
+                        <th scope="col">Artwork Type</th>
+                        <th scope="col">Lindsay</th>
+                        <th scope="col">Lyrics</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in filter_data %}
+                    <tr>
+                        <td>{{ row[0]['artname'] }}</td>
+                        <td>{{ row[0]['arttype'] }}</td>
+                        {% if row[0]['lindsay'] %}
+                        <td><input type="checkbox" checked disabled></td>
+                        {% else %}
+                        <td><input type="checkbox" disabled></td>
+                        {% endif %}
+                        {% if row[0]['lyrics'] %}
+                        <td><input type="checkbox" checked disabled></td>
+                        {% else %}
+                        <td><input type="checkbox" disabled></td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
 
 {% endblock %}

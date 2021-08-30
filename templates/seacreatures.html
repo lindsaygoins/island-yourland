@@ -57,48 +57,50 @@
             </div>
         </form>
 
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">Sea Creature Name</th>
-                    <th scope="col">Sell Price</th>
-                    <th scope="col">Season</th>
-                    <th scope="col">Time</th>
-                    <th scope="col">Lindsay</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for row in filter_data %}
-                <tr>
-                    <td>{{ row['seacreaturename'] }}</td>
-                    <td>{{ row['sellprice'] }}</td>
-                    {% if row['monthend'] %}
-                    <td>{{ row['monthstart']}} - {{ row['monthend']}} 
-                        {% if row['altmonthstart'] %}
-                        and {{ row['altmonthstart']}} - {{ row['altmonthend']}}
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Sea Creature Name</th>
+                        <th scope="col">Sell Price</th>
+                        <th scope="col">Season</th>
+                        <th scope="col">Time</th>
+                        <th scope="col">Lindsay</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in filter_data %}
+                    <tr>
+                        <td>{{ row['seacreaturename'] }}</td>
+                        <td>{{ row['sellprice'] }}</td>
+                        {% if row['monthend'] %}
+                        <td>{{ row['monthstart']}} - {{ row['monthend']}} 
+                            {% if row['altmonthstart'] %}
+                            and {{ row['altmonthstart']}} - {{ row['altmonthend']}}
+                            {% endif %}
+                        </td>
+                        {% else %}
+                        <td>All Year</td>
                         {% endif %}
-                    </td>
-                    {% else %}
-                    <td>All Year</td>
-                    {% endif %}
-                    {% if row['hourend'] %}
-                    <td>{{ row['hourstart']}} - {{ row['hourend']}}
-                        {% if row['althourstart'] %}
-                        and {{ row['althourstart']}} - {{ row['althourend']}}
+                        {% if row['hourend'] %}
+                        <td>{{ row['hourstart']}} - {{ row['hourend']}}
+                            {% if row['althourstart'] %}
+                            and {{ row['althourstart']}} - {{ row['althourend']}}
+                            {% endif %}
+                        </td>
+                        {% else %}
+                        <td>All Day</td>
                         {% endif %}
-                    </td>
-                    {% else %}
-                    <td>All Day</td>
-                    {% endif %}
-                    {% if row['lindsay'] %}
-                    <td><input type="checkbox" checked disabled></td>
-                    {% else %}
-                    <td><input type="checkbox" disabled></td>
-                    {% endif %}
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                        {% if row['lindsay'] %}
+                        <td><input type="checkbox" checked disabled></td>
+                        {% else %}
+                        <td><input type="checkbox" disabled></td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
 
 {% endblock %}

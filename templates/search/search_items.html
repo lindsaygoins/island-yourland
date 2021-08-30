@@ -18,40 +18,42 @@
             </div>
         </form>
 
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">Item Name</th>
-                    <th scope="col">Item Type</th>
-                    <th scope="col">Rug Size</th>
-                    <th scope="col">Lindsay</th>
-                    <th scope="col">Lyrics</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for row in search_data %}
-                <tr>
-                    <td>{{ row[0]['itemname'] }}</td>
-                    <td>{{ row[0]['itemcategory'] }}</td>
-                    {% if row[0]['rugsize'] %}
-                    <td>{{ row[0]['rugsize'] }}</td>
-                    {% else %}
-                    <td>N/A</td>
-                    {% endif %}
-                    {% if row[0]['lindsay'] %}
-                    <td><input type="checkbox" checked disabled></td>
-                    {% else %}
-                    <td><input type="checkbox" disabled></td>
-                    {% endif %}
-                    {% if row[0]['lyrics'] %}
-                    <td><input type="checkbox" checked disabled></td>
-                    {% else %}
-                    <td><input type="checkbox" disabled></td>
-                    {% endif %}
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Item Name</th>
+                        <th scope="col">Item Type</th>
+                        <th scope="col">Rug Size</th>
+                        <th scope="col">Lindsay</th>
+                        <th scope="col">Lyrics</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in search_data %}
+                    <tr>
+                        <td>{{ row[0]['itemname'] }}</td>
+                        <td>{{ row[0]['itemcategory'] }}</td>
+                        {% if row[0]['rugsize'] %}
+                        <td>{{ row[0]['rugsize'] }}</td>
+                        {% else %}
+                        <td>N/A</td>
+                        {% endif %}
+                        {% if row[0]['lindsay'] %}
+                        <td><input type="checkbox" checked disabled></td>
+                        {% else %}
+                        <td><input type="checkbox" disabled></td>
+                        {% endif %}
+                        {% if row[0]['lyrics'] %}
+                        <td><input type="checkbox" checked disabled></td>
+                        {% else %}
+                        <td><input type="checkbox" disabled></td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
 
 {% endblock %}
